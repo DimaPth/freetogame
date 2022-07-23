@@ -15,7 +15,7 @@ function App() {
   isLoading && <h1>loading...</h1>;
   error && <h1>something gone wrong</h1>;
   console.log(data);
-  return <div className="App">works</div>;
+  return <div>works</div>;
 }
 
 export default App;
