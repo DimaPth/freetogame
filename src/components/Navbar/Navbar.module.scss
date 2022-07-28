@@ -1,0 +1,23 @@
+.link {
+  font-size: 16px;
+  color: rgba(255, 255, 255, .5);
+  &:hover {
+    color: #fff;
+  }
+  &_btn {
+    font-size: 16px;
+    padding: 17px;
+    border: 1px solid #4799eb;
+    border-radius: 5px;
+    color: #4799eb;
+    &:hover {
+    color: #fff;
+    border-color: #fff;
+    transition: .2s;
+    }
+  }
+}
+
+.icon {
+  font-size: 16px;
+}
