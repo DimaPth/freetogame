@@ -11,7 +11,6 @@ import style from "./Navbar.module.scss";
 const Navbar: FC = () => {
   const freeGames = (
     <Menu
-      theme="dark"
       selectable={false}
       items={[
         { label: "MMORPG", key: "MMORPG" },
@@ -33,7 +32,6 @@ const Navbar: FC = () => {
 
   const browserGames = (
     <Menu
-      theme="dark"
       selectable={false}
       items={[
         { label: "Browser MMORPG", key: "Browser MMORPG" },
@@ -52,17 +50,17 @@ const Navbar: FC = () => {
   const auth = false;
 
   return (
-    <Layout.Header>
+    <Layout.Header className={style.header}>
       <Row align="middle">
         <Col span={16}>
           <Space size="large">
-            <Link to="/" className={style.link}>
+            <Link to="/">
               <img
                 src="https://www.freetogame.com/assets/images/freetogame-logo.png"
                 alt="logo"
               />
             </Link>
-            <Link to="/games" className={style.link}>
+            <Link to="/games">
               <Dropdown overlay={freeGames}>
                 <Space size={4}>
                   Free games
@@ -70,7 +68,7 @@ const Navbar: FC = () => {
                 </Space>
               </Dropdown>
             </Link>
-            <Link to="/browser" className={style.link}>
+            <Link to="/browser">
               <Dropdown overlay={browserGames}>
                 <Space size={4}>
                   Browser games
@@ -78,7 +76,7 @@ const Navbar: FC = () => {
                 </Space>
               </Dropdown>
             </Link>
-            <Link to="/top" className={style.link}>
+            <Link to="/top">
               <div>Top {new Date().getFullYear()}</div>
             </Link>
           </Space>
@@ -86,24 +84,24 @@ const Navbar: FC = () => {
         <Col span={5} offset={3}>
           <Row justify="end">
             <Space size="middle">
-              <Link to="/search" className={style.link}>
+              <Link to="/search">
                 <div>
-                  <SearchOutlined className={style.icon} />
+                  <SearchOutlined />
                 </div>
               </Link>
-              <Link to="/library" className={style.link}>
+              <Link to={auth ? "/library" : "/login"}>
                 <div>
-                  <AppstoreFilled className={style.icon} />
+                  <AppstoreFilled />
                 </div>
               </Link>
               {auth ? (
                 <div style={{ color: "#fff" }}>User</div>
               ) : (
                 <>
-                  <Link to="/login" className={style.link}>
+                  <Link to="/login">
                     <div>Log In</div>
                   </Link>
-                  <Link to="/register" className={style.link_btn}>
+                  <Link to="/register" className={style.linkBtn}>
                     Join Free
                   </Link>
                 </>

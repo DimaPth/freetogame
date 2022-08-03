@@ -1,23 +1,16 @@
-.link {
-  font-size: 16px;
-  color: rgba(255, 255, 255, .5);
-  &:hover {
-    color: #fff;
-  }
-  &_btn {
-    font-size: 16px;
-    padding: 17px;
-    border: 1px solid #4799eb;
-    border-radius: 5px;
-    color: #4799eb;
-    &:hover {
-    color: #fff;
-    border-color: #fff;
-    transition: .2s;
-    }
+.header {
+  border-bottom: 1px solid rgba(28,28,28,.6);
+  .linkBtn {
+      border: 1px solid #4799eb;
+      color: #4799eb;
+      transition: all .3s;
+      padding: 12px 16px;
+      border-radius: 5px;
+      &:hover {
+        border: 1px solid #fff;
+        color: #fff;
+      }
+
   }
 }
 
-.icon {
-  font-size: 16px;
-}
