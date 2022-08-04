@@ -1,19 +1,140 @@
-import { Button, Col, Row } from "antd";
+import {
+  FacebookOutlined,
+  TwitterOutlined,
+  WifiOutlined,
+} from "@ant-design/icons";
+import { Button, Col, Divider, Row, Space } from "antd";
 import { Footer } from "antd/lib/layout/layout";
 import React from "react";
+import style from "./FooterContent.module.scss";
 
 const FooterContent = () => {
   return (
     <Footer>
-      <Row align="middle">
-        <Col>1</Col>
-        <Col>2</Col>
-        <Col>3</Col>
-        <Col>4</Col>
+      <Row align="middle" className={style.row}>
+        <Col span={5} className={style.col}>
+          <a
+            href="https://www.freetogame.com/about"
+            target="_blank"
+            rel="noreferrer"
+            className={style.link}
+          >
+            About Us
+          </a>
+          <a
+            href="https://www.freetogame.com/api-doc"
+            target="_blank"
+            rel="noreferrer"
+            className={style.link}
+          >
+            API
+          </a>
+          <a
+            href="https://www.freetogame.com/contact"
+            target="_blank"
+            rel="noreferrer"
+            className={style.link}
+          >
+            Contact Us
+          </a>
+        </Col>
+        <Col span={5} className={style.col}>
+          <a
+            href="https://www.freetogame.com/faq"
+            target="_blank"
+            rel="noreferrer"
+            className={style.link}
+          >
+            Help/FAQ
+          </a>
+          <a
+            href="https://www.freetogame.com/support"
+            target="_blank"
+            rel="noreferrer"
+            className={style.link}
+          >
+            Support {"&"} Bugs
+          </a>
+          <a
+            href="https://www.freetogame.com/feedback"
+            target="_blank"
+            rel="noreferrer"
+            className={style.link}
+          >
+            Feature Request
+          </a>
+        </Col>
+        <Col span={5} className={style.col}>
+          <a
+            href="https://www.freetogame.com/privacy-policy"
+            target="_blank"
+            rel="noreferrer"
+            className={style.link}
+          >
+            Privacy Policy
+          </a>
+          <a
+            href="https://www.freetogame.com/cookies-policy"
+            target="_blank"
+            rel="noreferrer"
+            className={style.link}
+          >
+            Cookies Policy
+          </a>
+          <a
+            href="https://www.freetogame.com/terms-of-use"
+            target="_blank"
+            rel="noreferrer"
+            className={style.link}
+          >
+            Terms of Use
+          </a>
+        </Col>
+        <Col span={9} className={style.logo}>
+          <div>
+            <img
+              src="https://www.freetogame.com/assets/images/logo-footer.png"
+              alt="logo"
+            />
+          </div>
+        </Col>
       </Row>
-      <Row align="middle">
-        <Col>1</Col>
-        <Col>2</Col>
+      <Divider />
+      <Row justify="space-between" align="middle">
+        <Col>
+          <span className={style.small}>
+            © {new Date().getFullYear()} Digiwalls Media, all rights reserved.
+            All trademarks are property of their respective owners.
+          </span>
+        </Col>
+        <Col>
+          <Space size="large">
+            <a
+              href="https://www.facebook.com/FreeToGameOfficial/"
+              target="_blank"
+              rel="noreferrer"
+              className={style.brand}
+            >
+              <FacebookOutlined />
+            </a>
+            <a
+              href="https://twitter.com/FreeToGamecom"
+              target="_blank"
+              rel="noreferrer"
+              className={style.brand}
+            >
+              <TwitterOutlined />
+            </a>
+            <a
+              href="https://www.freetogame.com/rss/games"
+              target="_blank"
+              rel="noreferrer"
+              className={style.brand}
+            >
+              <WifiOutlined />
+            </a>
+          </Space>
+        </Col>
       </Row>
     </Footer>
   );

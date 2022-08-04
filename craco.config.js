@@ -20,6 +20,7 @@ module.exports = {
               '@link-color': 'rgba(255, 255, 255, .5)',
               '@link-hover-color': '#fff',
               '@item-hover-bg': '#272b30',
+              '@divider-color': 'rgba(94,84,84,.1)',
             },
             javascriptEnabled: true,
           },
