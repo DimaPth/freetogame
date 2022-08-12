@@ -1,5 +1,17 @@
 .header {
+  padding: 0;
+  position: fixed;
+  z-index: 1;
+  width: 100%;
   border-bottom: 1px solid rgba(28,28,28,.6);
+  &__content {
+    margin: 0 auto;
+    padding: 0 30px;
+    max-width: 1200px;
+  }
+  .img {
+    transform: translateY(-2.5px);
+  }
   .linkBtn {
       border: 1px solid #4799eb;
       color: #4799eb;

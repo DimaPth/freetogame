@@ -6,6 +6,7 @@ import {
 import { Col, Dropdown, Layout, Menu, Row, Space } from "antd";
 import React, { FC } from "react";
 import { Link } from "react-router-dom";
+import { RouteNames } from "../../routes";
 import style from "./Navbar.module.scss";
 
 const Navbar: FC = () => {
@@ -51,16 +52,17 @@ const Navbar: FC = () => {
 
   return (
     <Layout.Header className={style.header}>
-      <Row align="middle">
+      <Row align="middle" className={style.header__content}>
         <Col span={16}>
           <Space size="large">
-            <Link to="/">
+            <Link to={RouteNames.Home}>
               <img
+                className={style.img}
                 src="https://www.freetogame.com/assets/images/freetogame-logo.png"
                 alt="logo"
               />
             </Link>
-            <Link to="/games">
+            <Link to={RouteNames.Games}>
               <Dropdown overlay={freeGames}>
                 <Space size={4}>
                   Free games
@@ -68,7 +70,7 @@ const Navbar: FC = () => {
                 </Space>
               </Dropdown>
             </Link>
-            <Link to="/browser">
+            <Link to={RouteNames.Browser}>
               <Dropdown overlay={browserGames}>
                 <Space size={4}>
                   Browser games
@@ -76,7 +78,7 @@ const Navbar: FC = () => {
                 </Space>
               </Dropdown>
             </Link>
-            <Link to="/top">
+            <Link to={RouteNames.Top}>
               <div>Top {new Date().getFullYear()}</div>
             </Link>
           </Space>
@@ -84,12 +86,12 @@ const Navbar: FC = () => {
         <Col span={5} offset={3}>
           <Row justify="end">
             <Space size="middle">
-              <Link to="/search">
+              <Link to={RouteNames.Search}>
                 <div>
                   <SearchOutlined />
                 </div>
               </Link>
-              <Link to={auth ? "/library" : "/login"}>
+              <Link to={auth ? RouteNames.Library : RouteNames.Login}>
                 <div>
                   <AppstoreFilled />
                 </div>
@@ -98,10 +100,10 @@ const Navbar: FC = () => {
                 <div style={{ color: "#fff" }}>User</div>
               ) : (
                 <>
-                  <Link to="/login">
+                  <Link to={RouteNames.Login}>
                     <div>Log In</div>
                   </Link>
-                  <Link to="/register" className={style.linkBtn}>
+                  <Link to={RouteNames.Register} className={style.linkBtn}>
                     Join Free
                   </Link>
                 </>
