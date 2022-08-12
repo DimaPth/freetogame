@@ -1,14 +1,15 @@
-import { Card, Row } from "antd";
+import { Row } from "antd";
 import React, { FC } from "react";
-import { useGetAllGamesQuery } from "../../redux/freeToGameApi";
 import { IGames } from "../../types/IGames";
+import { GameCard } from "../GameCard/GameCard";
 import style from "./RandomGames.module.scss";
 
 interface RandomGamesProps {
   games: IGames[];
+  meta?: boolean;
 }
 
-const RandomGames = ({ games }: RandomGamesProps) => {
+const RandomGames: FC<RandomGamesProps> = ({ games, meta }) => {
   function getRandomInt(max: number) {
     return Math.floor(Math.random() * max);
   }
@@ -16,39 +17,24 @@ const RandomGames = ({ games }: RandomGamesProps) => {
   return (
     <div>
       <Row align="middle" justify="space-between">
-        <Card
-          className={style.card}
-          hoverable
-          bodyStyle={{ display: "none" }}
-          cover={
-            <div className={style.card__cover}>
-              <img src={games[getRandomInt(games?.length - 1)].thumbnail} />
-              <div className={style.card__cover_badge}>FREE</div>
-            </div>
-          }
-        />
-        <Card
-          className={style.card}
-          hoverable
-          bodyStyle={{ display: "none" }}
-          cover={
-            <div className={style.card__cover}>
-              <img src={games[getRandomInt(games?.length - 1)].thumbnail} />
-              <div className={style.card__cover_badge}>FREE</div>
-            </div>
-          }
-        />
-        <Card
-          className={style.card}
-          hoverable
-          bodyStyle={{ display: "none" }}
-          cover={
-            <div className={style.card__cover}>
-              <img src={games[getRandomInt(games?.length - 1)].thumbnail} />
-              <div className={style.card__cover_badge}>FREE</div>
-            </div>
-          }
-        />
+        <div>
+          <GameCard
+            meta="title"
+            game={games[getRandomInt(games?.length - 1)]}
+          />
+        </div>
+        <div className={style.card}>
+          <GameCard
+            meta="title"
+            game={games[getRandomInt(games?.length - 1)]}
+          />
+        </div>
+        <div>
+          <GameCard
+            meta="title"
+            game={games[getRandomInt(games?.length - 1)]}
+          />
+        </div>
       </Row>
     </div>
   );
