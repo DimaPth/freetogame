@@ -53,7 +53,7 @@ const Home: FC = () => {
               <RobotFilled />
               &nbsp;Personalized Recommendations
             </Typography.Title>
-            <RandomGames games={data} meta />
+            <RandomGames games={data} />
             <div className={style.content__main}>
               <Row>
                 <Col span={16}>

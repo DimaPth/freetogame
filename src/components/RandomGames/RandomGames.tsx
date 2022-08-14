@@ -6,10 +6,9 @@ import style from "./RandomGames.module.scss";
 
 interface RandomGamesProps {
   games: IGames[];
-  meta?: boolean;
 }
 
-const RandomGames: FC<RandomGamesProps> = ({ games, meta }) => {
+const RandomGames: FC<RandomGamesProps> = ({ games }) => {
   function getRandomInt(max: number) {
     return Math.floor(Math.random() * max);
   }
