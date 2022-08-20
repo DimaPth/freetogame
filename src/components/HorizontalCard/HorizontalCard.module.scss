@@ -1,0 +1,36 @@
+.card {
+  margin-bottom: 16px;
+  transition: all .2s;
+  &:hover{
+    transform: scale(101%);
+  }
+  .number {
+    padding-right: 24px;
+    color: #4799eb;
+  }
+  .badge {
+    font-size: 75%;
+    font-weight: 700;
+    padding: 4px 8px;
+    text-align: center;
+    color: #fff;
+    background-color: #4799eb;
+    border-radius: 0.25rem;
+  }
+  .dark {
+    color: #272b30;
+    background-color: #7a8288;
+    padding: 2px 4px;
+  }
+  .description {
+      overflow: hidden;
+      padding: 0 20px;
+    .meta {
+      color: #7a8288;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      margin-bottom: 5px;
+    }
+  }
+}

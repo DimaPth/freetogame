@@ -12,6 +12,7 @@ import {
   WindowsFilled,
 } from "@ant-design/icons";
 import { GameCard } from "../../components/GameCard/GameCard";
+import HorizontalCard from "../../components/HorizontalCard/HorizontalCard";
 
 const Home: FC = () => {
   const { data, isLoading, isError, isSuccess } =
@@ -59,46 +60,7 @@ const Home: FC = () => {
                 <Col span={16}>
                   <Typography.Title level={3}>Recently Added</Typography.Title>
                   {newGames?.map((item) => (
-                    <Card
-                      key={item.id}
-                      className={style.card}
-                      hoverable
-                      bodyStyle={{
-                        display: "flex",
-                        justifyContent: "space-between",
-                        alignItems: "center",
-                        padding: "12px 24px",
-                      }}
-                    >
-                      <div className={style.img_wrap}>
-                        <img
-                          src={item.thumbnail}
-                          alt={item.title}
-                          width="160px"
-                        />
-                      </div>
-                      <div className={style.description}>
-                        <Card.Meta title={item.title} />
-                        <div className={style.meta}>
-                          {item.short_description}
-                        </div>
-                        <div>
-                          <span className={cn(style.badge, style.dark)}>
-                            {item.genre}
-                          </span>
-                        </div>
-                      </div>
-                      <div>
-                        <Space size="large">
-                          {item.platform === "Web Browser" ? (
-                            <ChromeFilled />
-                          ) : (
-                            <WindowsFilled />
-                          )}
-                          <span className={style.badge}>FREE</span>
-                        </Space>
-                      </div>
-                    </Card>
+                    <HorizontalCard game={item} />
                   ))}
                   <div className={style.btn}>
                     <Link to="/games">
