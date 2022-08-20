@@ -5,7 +5,7 @@ import Library from "./pages/Library";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Search from "./pages/Search";
-import Top from "./pages/Top";
+import Top from "./pages/Top/Top";
 
 interface IRoutes {
   path: string,

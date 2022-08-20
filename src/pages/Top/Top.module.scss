@@ -1,0 +1,20 @@
+.moreGames {
+  padding-top: 24px;
+  .title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .btn {
+      font-size: small;
+      padding: 4px 8px;
+      color: #7a8288;
+      border: 1px solid #7a8288;
+      border-radius: 5px;
+      transition: all .3s;
+      &:hover {
+      color: #fff;
+        border-color: #fff;
+      }
+    }
+  }
+}
