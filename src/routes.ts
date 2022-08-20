@@ -1,6 +1,5 @@
 import React from "react";
-import Browser from "./pages/Browser";
-import Games from "./pages/Games";
+import Games from "./pages/Games/Games";
 import Home from "./pages/Home/Home";
 import Library from "./pages/Library";
 import Login from "./pages/Login";
@@ -27,7 +26,7 @@ export enum RouteNames {
 export const publicRoutes: IRoutes[] = [
   {path: RouteNames.Home, element: Home},
   {path: RouteNames.Games, element: Games},
-  {path: RouteNames.Browser, element: Browser},
+  {path: RouteNames.Browser, element: Games},
   {path: RouteNames.Top, element: Top},
   {path: RouteNames.Search, element: Search},
   {path: RouteNames.Login, element: Login},
@@ -37,7 +36,7 @@ export const publicRoutes: IRoutes[] = [
 export const privateRoutes: IRoutes[] = [
   {path: RouteNames.Home, element: Home},
   {path: RouteNames.Games, element: Games},
-  {path: RouteNames.Browser, element: Browser},
+  {path: RouteNames.Browser, element: Games},
   {path: RouteNames.Top, element: Top},
   {path: RouteNames.Search, element: Search},
   {path: RouteNames.Login, element: Login},

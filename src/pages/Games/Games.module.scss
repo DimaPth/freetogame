@@ -1,0 +1,26 @@
+.dark_text {
+  color: #7a8288;
+}
+.header {
+  padding: 0 10px;
+  .title { 
+    margin-bottom: 8px;
+  }
+}
+.random {
+  padding-top: 25px;
+}
+
+.select {
+  padding: 0 10px;
+  &_item {
+    color: #fff;
+  }
+}
+.games__list {
+  padding-top: 25px;
+  .card {
+    display: flex;
+    justify-content: center;
+  }
+}

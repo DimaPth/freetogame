@@ -16,6 +16,7 @@ interface GameCardProps {
 }
 
 const GameCard: FC<GameCardProps> = ({ game, meta, small }) => {
+  if (!game) return null;
   if (meta) {
     return (
       <Card
@@ -25,15 +26,15 @@ const GameCard: FC<GameCardProps> = ({ game, meta, small }) => {
         cover={
           <div className={style.card__cover}>
             <img
-              src={game.thumbnail}
-              width="356px"
+              src={game?.thumbnail}
+              width={356}
               className={cn({ [style.small]: small })}
             />
           </div>
         }
       >
         <div className={style.card__title}>
-          <h3 className={style.card__title_heading}>{game.title}</h3>
+          <h3 className={style.card__title_heading}>{game?.title}</h3>
           <div
             className={cn(style.badge, {
               [style.small_badge]: meta === "full",
@@ -52,9 +53,9 @@ const GameCard: FC<GameCardProps> = ({ game, meta, small }) => {
                 <AppstoreAddOutlined />
               </div>
               <Space>
-                <div className={cn(style.badge, style.dark)}>{game.genre}</div>
+                <div className={cn(style.badge, style.dark)}>{game?.genre}</div>
                 <div>
-                  {game.platform === "Browser" ? (
+                  {game?.platform === "Browser" ? (
                     <ChromeFilled />
                   ) : (
                     <WindowsFilled />
@@ -74,7 +75,7 @@ const GameCard: FC<GameCardProps> = ({ game, meta, small }) => {
         hoverable
         cover={
           <div className={style.card__cover}>
-            <img src={game.thumbnail} />
+            <img src={game?.thumbnail} width={356} />
             <div className={cn(style.badge, style.bottom_right)}>FREE</div>
           </div>
         }

@@ -43,16 +43,11 @@ export const freeToGameApi = createApi({
         headers
       })
     }),
-    getMultipleSortedGames: builder.query<IGames[], {platform?: string, genre?: string, sortBy?: string}>({
+    getMultipleSortedGames: builder.query<IGames[], {platform?: string, category?: string, 'sort-by'?: string}>({
       query: (args) => {
-        const {platform, genre, sortBy} = args;
         return {
           url: `games`,
-          params: {
-            platform,
-            category: genre,
-            'sort-by': sortBy,
-          },
+          params: args,
           headers
         }
       }
