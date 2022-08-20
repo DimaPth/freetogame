@@ -1,4 +1,8 @@
-import { ChromeFilled, WindowsFilled } from "@ant-design/icons";
+import {
+  ChromeFilled,
+  EnvironmentFilled,
+  WindowsFilled,
+} from "@ant-design/icons";
 import { Card, Space, Typography } from "antd";
 import classNames from "classnames";
 import React, { FC } from "react";
@@ -47,8 +51,8 @@ const HorizontalCard: FC<HorizontalCardProps> = ({
         <div>
           {type === "top" ? (
             <span>
-              {game.title} is currenty one of the most-played Free To Play games
-              in {new Date().getFullYear()}
+              <EnvironmentFilled /> {game.title} is currenty one of the
+              most-played Free To Play games in {new Date().getFullYear()}
             </span>
           ) : (
             <span className={classNames(style.badge, style.dark)}>
