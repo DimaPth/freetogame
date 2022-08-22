@@ -1,6 +1,14 @@
+.topGames {
+  padding-top: 16px;
+}
+
+.divider {
+  margin: 16px 0;
+}
+
 .moreGames {
   padding-top: 24px;
-  .title {
+  .header {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -17,4 +25,8 @@
       }
     }
   }
+}
+
+.dark_text {
+  color: #7a8288;
 }
