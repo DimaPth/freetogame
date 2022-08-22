@@ -17,7 +17,7 @@ const Games: FC = () => {
   const { data, isLoading, isError, isSuccess } =
     useGetMultipleSortedGamesQuery({ platform, category, "sort-by": sortBy });
 
-  const current = data?.slice(0, limit);
+  const current = isSuccess && data?.length > 0 && data?.slice(0, limit);
 
   useEffect(() => {
     document.addEventListener("scroll", scrollHandler);
@@ -128,11 +128,12 @@ const Games: FC = () => {
         </Row>
         <div className={style.games__list}>
           <Row>
-            {current?.map((game) => (
-              <Col span={6} className={style.card} key={game.id}>
-                <GameCard game={game} small meta="full" />
-              </Col>
-            ))}
+            {current &&
+              current?.map((game) => (
+                <Col span={6} className={style.card} key={game.id}>
+                  <GameCard game={game} small meta="full" />
+                </Col>
+              ))}
           </Row>
         </div>
       </div>
