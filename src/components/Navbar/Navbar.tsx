@@ -70,7 +70,7 @@ const Navbar: FC = () => {
                 </Space>
               </Dropdown>
             </Link>
-            <Link to={RouteNames.Browser}>
+            <Link to={RouteNames.Games}>
               <Dropdown overlay={browserGames}>
                 <Space size={4}>
                   Browser games
