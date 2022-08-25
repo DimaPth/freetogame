@@ -28,6 +28,7 @@ module.exports = {
               '@select-item-active-bg': '#272b30',
               '@select-item-selected-color': '#fff',
               '@select-item-selected-font-weight': '400',
+              '@input-bg': '#1c1e22',
             },
             javascriptEnabled: true,
           },

@@ -60,7 +60,7 @@ const Home: FC = () => {
                 <Col span={16}>
                   <Typography.Title level={3}>Recently Added</Typography.Title>
                   {newGames?.map((item) => (
-                    <HorizontalCard game={item} />
+                    <HorizontalCard game={item} key={item.id} />
                   ))}
                   <div className={style.btn}>
                     <Link to="/games">

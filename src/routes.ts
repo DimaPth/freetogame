@@ -15,7 +15,6 @@ interface IRoutes {
 export enum RouteNames {
   Home = '/',
   Games = '/games',
-  Browser = '/browser',
   Top = '/top',
   Search = '/search',
   Login = '/login',
@@ -26,7 +25,6 @@ export enum RouteNames {
 export const publicRoutes: IRoutes[] = [
   {path: RouteNames.Home, element: Home},
   {path: RouteNames.Games, element: Games},
-  {path: RouteNames.Browser, element: Games},
   {path: RouteNames.Top, element: Top},
   {path: RouteNames.Search, element: Search},
   {path: RouteNames.Login, element: Login},
@@ -36,7 +34,6 @@ export const publicRoutes: IRoutes[] = [
 export const privateRoutes: IRoutes[] = [
   {path: RouteNames.Home, element: Home},
   {path: RouteNames.Games, element: Games},
-  {path: RouteNames.Browser, element: Games},
   {path: RouteNames.Top, element: Top},
   {path: RouteNames.Search, element: Search},
   {path: RouteNames.Login, element: Login},
