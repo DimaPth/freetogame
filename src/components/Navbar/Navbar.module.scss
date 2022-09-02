@@ -12,6 +12,13 @@
   .img {
     transform: translateY(-2.5px);
   }
+  .account {
+    font-size: 12px;
+    cursor: pointer;
+    &:hover {
+      color: #fff;
+    }
+  }
   .linkBtn {
       border: 1px solid #4799eb;
       color: #4799eb;

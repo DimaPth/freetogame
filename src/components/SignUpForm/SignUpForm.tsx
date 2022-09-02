@@ -7,9 +7,11 @@ import style from "./SignUpForm.module.scss";
 
 interface SignUpFormProps {
   type: "login" | "register";
+  error: string;
+  handleClick: (email: string, password: string, username?: string) => void;
 }
 
-const SignUpForm: FC<SignUpFormProps> = ({ type }) => {
+const SignUpForm: FC<SignUpFormProps> = ({ type, handleClick, error }) => {
   return (
     <div>
       <div className={style.wrap}>
@@ -39,6 +41,11 @@ const SignUpForm: FC<SignUpFormProps> = ({ type }) => {
                 name="basic"
                 initialValues={{ remember: true }}
                 autoComplete="off"
+                onFinish={(e) =>
+                  type === "register"
+                    ? handleClick(e.email, e.password, e.username)
+                    : handleClick(e.email, e.password)
+                }
               >
                 {type === "register" && (
                   <Form.Item
@@ -56,14 +63,14 @@ const SignUpForm: FC<SignUpFormProps> = ({ type }) => {
                 <Form.Item
                   name="email"
                   rules={[
+                    {
+                      type: "email",
+                      message: "The input is not valid E-mail!",
+                    },
                     { required: true, message: "Please input your Email!" },
                   ]}
                 >
-                  <Input
-                    type="email"
-                    placeholder="Email Address"
-                    className={style.input}
-                  />
+                  <Input placeholder="Email Address" className={style.input} />
                 </Form.Item>
 
                 {type === "register" ? (
@@ -79,6 +86,10 @@ const SignUpForm: FC<SignUpFormProps> = ({ type }) => {
                           required: true,
                           message: "Please input your password!",
                         },
+                        {
+                          min: 6,
+                          message: "Password should be at least 6 characters.",
+                        },
                       ]}
                     >
                       <Input.Password
@@ -88,6 +99,7 @@ const SignUpForm: FC<SignUpFormProps> = ({ type }) => {
                     </Form.Item>
                     <Form.Item
                       name="confirm"
+                      dependencies={["password"]}
                       style={{
                         display: "inline-block",
                         width: "calc(50% - 8px)",
@@ -98,6 +110,18 @@ const SignUpForm: FC<SignUpFormProps> = ({ type }) => {
                           required: true,
                           message: "Please confirm your password!",
                         },
+                        ({ getFieldValue }) => ({
+                          validator(_, value) {
+                            if (!value || getFieldValue("password") === value) {
+                              return Promise.resolve();
+                            }
+                            return Promise.reject(
+                              new Error(
+                                "The two passwords that you entered do not match!"
+                              )
+                            );
+                          },
+                        }),
                       ]}
                     >
                       <Input.Password
@@ -114,6 +138,10 @@ const SignUpForm: FC<SignUpFormProps> = ({ type }) => {
                         required: true,
                         message: "Please input your password!",
                       },
+                      {
+                        min: 6,
+                        message: "Password should be at least 6 characters.",
+                      },
                     ]}
                   >
                     <Input.Password
@@ -128,6 +156,9 @@ const SignUpForm: FC<SignUpFormProps> = ({ type }) => {
                     {type === "login" ? "Login" : "Create Account"}
                   </button>
                 </Form.Item>
+                {error && (
+                  <Typography.Text type="danger">{error}</Typography.Text>
+                )}
               </Form>
               {type === "login" ? (
                 <Typography.Text className={style.text}>

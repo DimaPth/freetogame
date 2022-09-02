@@ -111,7 +111,7 @@ const Top: FC = () => {
               ? "PC"
               : "Browser"}
           </Typography.Title>
-          <Link to="/games">
+          <Link to="/games" onClick={() => window.scrollTo(0, 0)}>
             <div className={style.btn}>
               Explore <RightOutlined />
             </div>

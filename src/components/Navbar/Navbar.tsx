@@ -4,12 +4,41 @@ import {
   SearchOutlined,
 } from "@ant-design/icons";
 import { Col, Dropdown, Layout, Menu, Row, Space } from "antd";
+import type { MenuProps } from "antd";
 import React, { FC } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../../hooks/useAuth";
 import { RouteNames } from "../../routes";
 import style from "./Navbar.module.scss";
+import { getAuth, signOut } from "firebase/auth";
+import { setUser } from "../../redux/slices/userSlice";
+import { useDispatch } from "react-redux";
 
 const Navbar: FC = () => {
+  const { isAuth, username } = useAuth();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const auth = getAuth();
+
+  const logoutUser = () => {
+    signOut(auth)
+      .then(() => {
+        dispatch(
+          setUser({
+            username: null,
+            email: null,
+            id: null,
+            token: null,
+          })
+        );
+        navigate("/");
+      })
+      .catch((e) => {
+        alert(e.message);
+      });
+  };
+
   const freeGames = (
     <Menu
       selectable={false}
@@ -48,7 +77,22 @@ const Navbar: FC = () => {
     />
   );
 
-  const auth = false;
+  const onClick: MenuProps["onClick"] = (e) => {
+    if (e.key === "Logout") {
+      logoutUser();
+    }
+  };
+
+  const account = (
+    <Menu
+      selectable={false}
+      onClick={onClick}
+      items={[
+        { label: "My Library", key: "Library" },
+        { label: "Logout", key: "Logout" },
+      ]}
+    />
+  );
 
   return (
     <Layout.Header className={style.header}>
@@ -91,13 +135,28 @@ const Navbar: FC = () => {
                   <SearchOutlined />
                 </div>
               </Link>
-              <Link to={auth ? RouteNames.Library : RouteNames.Login}>
+              <Link to={isAuth ? RouteNames.Library : RouteNames.Login}>
                 <div>
                   <AppstoreFilled />
                 </div>
               </Link>
-              {auth ? (
-                <div style={{ color: "#fff" }}>User</div>
+              {isAuth ? (
+                <Dropdown
+                  overlay={account}
+                  trigger={["click"]}
+                  className={style.account}
+                >
+                  <Space size={4}>
+                    <img
+                      src="https://www.freetogame.com/assets/images/avatars/default/default-small.png"
+                      alt="avatar"
+                      width={32}
+                      height={32}
+                    />
+                    {username}
+                    <CaretDownOutlined />
+                  </Space>
+                </Dropdown>
               ) : (
                 <>
                   <Link to={RouteNames.Login}>

@@ -36,7 +36,5 @@ export const privateRoutes: IRoutes[] = [
   {path: RouteNames.Games, element: Games},
   {path: RouteNames.Top, element: Top},
   {path: RouteNames.Search, element: Search},
-  {path: RouteNames.Login, element: Login},
-  {path: RouteNames.Register, element: Register},
   {path: RouteNames.Library, element: Library},
 ]

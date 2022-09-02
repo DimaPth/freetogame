@@ -33,6 +33,7 @@
 
 .jumbotron {
   padding: 64px 0;
+  margin-bottom: 20px;
   text-align: center;
   background: url('https://www.freetogame.com/assets/images/paladins.png');
   background-repeat: no-repeat;
@@ -57,7 +58,7 @@
 }
 
 .content {
-  padding: 50px 0;
+  padding: 30px 0 50px;
   &__main{
     margin: 30px 0;
     .btn {
