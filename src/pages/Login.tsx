@@ -30,6 +30,8 @@ const Login: FC = () => {
       });
   };
 
+  window.scrollTo(0, 0);
+
   return (
     <div className="container">
       <SignUpForm type="login" handleClick={handleLogin} error={error} />

@@ -41,6 +41,8 @@ const Register: FC = () => {
       });
   };
 
+  window.scrollTo(0, 0);
+
   return (
     <div className="container">
       <SignUpForm type="register" handleClick={handleRegister} error={error} />

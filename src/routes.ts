@@ -1,4 +1,5 @@
 import React from "react";
+import Game from "./pages/Game/Game";
 import Games from "./pages/Games/Games";
 import Home from "./pages/Home/Home";
 import Library from "./pages/Library";
@@ -15,6 +16,7 @@ interface IRoutes {
 export enum RouteNames {
   Home = '/',
   Games = '/games',
+  Game = '/games/:id',
   Top = '/top',
   Search = '/search',
   Login = '/login',
@@ -25,6 +27,7 @@ export enum RouteNames {
 export const publicRoutes: IRoutes[] = [
   {path: RouteNames.Home, element: Home},
   {path: RouteNames.Games, element: Games},
+  {path: RouteNames.Game, element: Game},
   {path: RouteNames.Top, element: Top},
   {path: RouteNames.Search, element: Search},
   {path: RouteNames.Login, element: Login},
@@ -34,6 +37,7 @@ export const publicRoutes: IRoutes[] = [
 export const privateRoutes: IRoutes[] = [
   {path: RouteNames.Home, element: Home},
   {path: RouteNames.Games, element: Games},
+  {path: RouteNames.Game, element: Game},
   {path: RouteNames.Top, element: Top},
   {path: RouteNames.Search, element: Search},
   {path: RouteNames.Library, element: Library},

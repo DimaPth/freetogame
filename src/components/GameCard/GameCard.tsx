@@ -1,13 +1,14 @@
 import React, { FC } from "react";
 import style from "./GameCard.module.scss";
 import cn from "classnames";
-import { Card, Space, Typography } from "antd";
+import { Card, Space } from "antd";
 import { IGames } from "../../types/IGames";
 import {
   AppstoreAddOutlined,
   ChromeFilled,
   WindowsFilled,
 } from "@ant-design/icons";
+import { Link } from "react-router-dom";
 
 interface GameCardProps {
   game: IGames;
@@ -19,67 +20,74 @@ const GameCard: FC<GameCardProps> = ({ game, meta, small }) => {
   if (!game) return null;
   if (meta) {
     return (
-      <Card
-        className={cn(style.card, { [style.small]: small })}
-        bodyStyle={{ padding: "20px" }}
-        hoverable
-        cover={
-          <div className={style.card__cover}>
-            <img
-              src={game?.thumbnail}
-              width={356}
-              className={cn({ [style.small]: small })}
-            />
-          </div>
-        }
-      >
-        <div className={style.card__title}>
-          <h3 className={style.card__title_heading}>{game?.title}</h3>
-          <div
-            className={cn(style.badge, {
-              [style.small_badge]: meta === "full",
-            })}
-          >
-            FREE
-          </div>
-        </div>
-        {meta === "full" && (
-          <div className={style.card__descr}>
-            <div className={style.card__descr_text}>
-              {game.short_description}
+      <Link to={`/games/${game.id}`}>
+        <Card
+          className={cn(style.card, { [style.small]: small })}
+          bodyStyle={{ padding: "20px" }}
+          hoverable
+          cover={
+            <div className={style.card__cover}>
+              <img
+                src={game?.thumbnail}
+                alt={game?.title}
+                width={356}
+                className={cn({ [style.small]: small })}
+              />
             </div>
-            <div className={style.card__descr_else}>
-              <div className={style.addBtn}>
-                <AppstoreAddOutlined />
+          }
+        >
+          <div className={style.card__title}>
+            <h3 className={style.card__title_heading}>{game?.title}</h3>
+            <div
+              className={cn(style.badge, {
+                [style.small_badge]: meta === "full",
+              })}
+            >
+              FREE
+            </div>
+          </div>
+          {meta === "full" && (
+            <div className={style.card__descr}>
+              <div className={style.card__descr_text}>
+                {game.short_description}
               </div>
-              <Space>
-                <div className={cn(style.badge, style.dark)}>{game?.genre}</div>
-                <div>
-                  {game?.platform === "Browser" ? (
-                    <ChromeFilled />
-                  ) : (
-                    <WindowsFilled />
-                  )}
+              <div className={style.card__descr_else}>
+                <div className={style.addBtn}>
+                  <AppstoreAddOutlined />
                 </div>
-              </Space>
+                <Space>
+                  <div className={cn(style.badge, style.dark)}>
+                    {game?.genre}
+                  </div>
+                  <div>
+                    {game?.platform === "Browser" ? (
+                      <ChromeFilled />
+                    ) : (
+                      <WindowsFilled />
+                    )}
+                  </div>
+                </Space>
+              </div>
             </div>
-          </div>
-        )}
-      </Card>
+          )}
+        </Card>
+      </Link>
     );
   } else {
     return (
-      <Card
-        className={style.card}
-        bodyStyle={{ display: "none" }}
-        hoverable
-        cover={
-          <div className={style.card__cover}>
-            <img src={game?.thumbnail} width={356} />
-            <div className={cn(style.badge, style.bottom_right)}>FREE</div>
-          </div>
-        }
-      />
+      <Link to={`/games/${game.id}`}>
+        <Card
+          className={style.card}
+          bodyStyle={{ display: "none" }}
+          hoverable
+          cover={
+            <div className={style.card__cover}>
+              <img src={game?.thumbnail} alt={game?.title} width={356} />
+              <div className={cn(style.badge, style.bottom_right)}>FREE</div>
+            </div>
+          }
+        />
+      </Link>
     );
   }
 };
