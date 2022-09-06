@@ -9,6 +9,7 @@ import { RightOutlined, RobotFilled } from "@ant-design/icons";
 import { GameCard } from "../../components/GameCard/GameCard";
 import HorizontalCard from "../../components/HorizontalCard/HorizontalCard";
 import { useAuth } from "../../hooks/useAuth";
+import CustomBtn from "../../components/CustomBtn/CustomBtn";
 
 const Home: FC = () => {
   const { isAuth } = useAuth();
@@ -31,14 +32,12 @@ const Home: FC = () => {
             <Typography.Paragraph>
               <Space>
                 <Link to="/register">
-                  <div className={style.linkBtn}>
+                  <CustomBtn type="link">
                     <b>GET STARTED</b> <span>it's free</span>
-                  </div>
+                  </CustomBtn>
                 </Link>
                 <Link to="/games">
-                  <div className={cn(style.linkBtn, style.ghost)}>
-                    Browse Games
-                  </div>
+                  <CustomBtn type="ghost">Browse Games</CustomBtn>
                 </Link>
               </Space>
             </Typography.Paragraph>
@@ -63,9 +62,9 @@ const Home: FC = () => {
                   ))}
                   <div className={style.btn}>
                     <Link to="/games" onClick={() => window.scrollTo(0, 0)}>
-                      <div className={cn(style.linkBtn, style.ghost)}>
+                      <CustomBtn type="ghost">
                         More Games <RightOutlined />
-                      </div>
+                      </CustomBtn>
                     </Link>
                   </div>
                 </Col>
@@ -106,14 +105,12 @@ const Home: FC = () => {
                     <div className={style.about__btns}>
                       <Space>
                         <Link to="/register">
-                          <div className={style.linkBtn}>
+                          <CustomBtn type="link">
                             <b>JOIN NOW</b>
-                          </div>
+                          </CustomBtn>
                         </Link>
                         <a href="https://www.freetogame.com/about">
-                          <div className={cn(style.linkBtn, style.ghost)}>
-                            Learn More
-                          </div>
+                          <CustomBtn type="ghost">Learn More</CustomBtn>
                         </a>
                       </Space>
                     </div>

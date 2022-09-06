@@ -9,6 +9,7 @@ import {
   PlaySquareOutlined,
   QqOutlined,
 } from "@ant-design/icons";
+import CustomBtn from "../../components/CustomBtn/CustomBtn";
 
 const Game: FC = () => {
   const { id } = useParams<{ id?: string }>();
@@ -65,16 +66,18 @@ const Game: FC = () => {
                     className={style.buttons}
                     style={{ display: "flex", gap: "8px" }}
                   >
-                    <div className={style.btn}>FREE</div>
+                    <CustomBtn>FREE</CustomBtn>
                     <a
                       href={data?.game_url}
-                      className={style.linkBtn}
                       target="_blank"
                       rel="noreferrer"
+                      className={style.linkBtn}
                     >
-                      <strong>
-                        PLAY NOW <PlaySquareOutlined />
-                      </strong>
+                      <CustomBtn type="link">
+                        <strong>
+                          PLAY NOW <PlaySquareOutlined />
+                        </strong>
+                      </CustomBtn>
                     </a>
                   </div>
                   <span className={style.require}>
