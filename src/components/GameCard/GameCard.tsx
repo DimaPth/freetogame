@@ -22,9 +22,10 @@ const GameCard: FC<GameCardProps> = ({ game, meta, small }) => {
     return (
       <Link
         to={`/games/${game.id}`}
-        className={cn(style.card, { [style.small]: small })}
+        className={cn(style.cardLink, { [style.small]: small })}
       >
         <Card
+          className={style.card}
           bodyStyle={{ padding: "20px" }}
           hoverable
           cover={
@@ -77,8 +78,9 @@ const GameCard: FC<GameCardProps> = ({ game, meta, small }) => {
     );
   } else {
     return (
-      <Link to={`/games/${game.id}`} className={style.card}>
+      <Link to={`/games/${game.id}`} className={style.cardLink}>
         <Card
+          className={style.card}
           bodyStyle={{ display: "none" }}
           hoverable
           cover={

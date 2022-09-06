@@ -1,70 +1,73 @@
-.card {
+.cardLink {
   width: 356px;
+  margin-bottom: 24px;
   transition: all .2s;
   box-shadow: 1px 2px rgba(0,0,0,.15);
-  border: 1px solid transparent;
-  margin-bottom: 24px;
   &:hover {
     transform: scale(101%);
   }
-  &__cover {
-    position: relative;
-  }
-  &__title {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    &_heading {
-      margin-bottom: 0;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
+  .card {
+    border: 1px solid transparent;
+    &__cover {
+      position: relative;
     }
-  }
-  &__descr {
-    &_text {
-      color: #7a8288;
-      padding-top: 8px;
-      padding-bottom: 6px;
-      overflow: hidden;
-      white-space: nowrap;
-      text-overflow: ellipsis;
+    &__title {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      &_heading {
+        margin-bottom: 0;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
     }
-    &_else {
+    &__descr {
+      &_text {
+        color: #7a8288;
+        padding-top: 8px;
+        padding-bottom: 6px;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+      }
+      &_else {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+    }
+    .badge {      
+      font-size: 75%;
+      font-weight: 700;
+      padding: 4px 8px;
+      text-align: center;
+      color: #fff;
+      background-color: #4799eb;
+      border-radius: 0.25rem;
+    }
+    .small_badge {
+      font-size: 70%;
+      padding: 1px 3px;
+    }
+    .dark {
+      font-size: 65%;
+      color: #272b30;
+      background-color: #7a8288;
+      padding: 1px 2px;
+    }
+    .bottom_right {
+      position: absolute;
+      bottom: 8px;
+      right: 16px;
+    }
+    .title {
       display: flex;
       align-items: center;
       justify-content: space-between;
     }
   }
-  .badge {      
-    font-size: 75%;
-    font-weight: 700;
-    padding: 4px 8px;
-    text-align: center;
-    color: #fff;
-    background-color: #4799eb;
-    border-radius: 0.25rem;
-  }
-  .small_badge {
-    font-size: 70%;
-    padding: 1px 3px;
-  }
-  .dark {
-    font-size: 65%;
-    color: #272b30;
-    background-color: #7a8288;
-    padding: 1px 2px;
-  }
-  .bottom_right {
-    position: absolute;
-    bottom: 8px;
-    right: 16px;
-  }
-  .title {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
+
 }
 
 .small {
