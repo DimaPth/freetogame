@@ -2,7 +2,7 @@ import React, { FC } from "react";
 import style from "./GameCard.module.scss";
 import cn from "classnames";
 import { Card, Space } from "antd";
-import { IGames } from "../../types/IGames";
+import { IGame, IGames } from "../../types/IGames";
 import {
   AppstoreAddOutlined,
   ChromeFilled,
@@ -14,9 +14,10 @@ interface GameCardProps {
   game: IGames;
   meta?: "title" | "full";
   small?: boolean;
+  addGame?: (e: any) => void;
 }
 
-const GameCard: FC<GameCardProps> = ({ game, meta, small }) => {
+const GameCard: FC<GameCardProps> = ({ game, meta, small, addGame }) => {
   if (!game) return null;
   if (meta) {
     return (
@@ -55,7 +56,7 @@ const GameCard: FC<GameCardProps> = ({ game, meta, small }) => {
                 {game.short_description}
               </div>
               <div className={style.card__descr_else}>
-                <div className={style.addBtn}>
+                <div className={style.addBtn} onClick={addGame}>
                   <AppstoreAddOutlined />
                 </div>
                 <Space>

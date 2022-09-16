@@ -35,6 +35,12 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
+        .addBtn {
+          cursor: pointer;
+          &:hover {
+            color: #fff
+          }
+        }
       }
     }
     .badge {      

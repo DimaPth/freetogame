@@ -1,13 +1,20 @@
 import { Col, Row, Select, Typography } from "antd";
 import React, { FC, useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import { GameCard } from "../../components/GameCard/GameCard";
 import RandomGames from "../../components/RandomGames/RandomGames";
+import { useAppSelector } from "../../hooks/redux";
+import { useAuth } from "../../hooks/useAuth";
 import { useGetMultipleSortedGamesQuery } from "../../redux/freeToGameApi";
+import { addGame, removeGame } from "../../redux/slices/localStorageSlice";
+import { IGames } from "../../types/IGames";
 import style from "./Games.module.scss";
 
 const { Option, OptGroup } = Select;
 
 const Games: FC = () => {
+  const { email } = useAuth();
+  const { users } = useAppSelector((state) => state.local);
   const [platform, setPlatform] = useState<string>("all");
   const [category, setCategory] = useState<string>();
   const [sortBy, setSortBy] = useState<string>();
@@ -16,6 +23,8 @@ const Games: FC = () => {
 
   const { data, isLoading, isError, isSuccess } =
     useGetMultipleSortedGamesQuery({ platform, category, "sort-by": sortBy });
+
+  const dispatch = useDispatch();
 
   const current = isSuccess && data?.length > 0 && data?.slice(0, limit);
 
@@ -35,6 +44,11 @@ const Games: FC = () => {
     ) {
       setLimit((prev) => prev + 10);
     }
+  };
+
+  const handleClickAdd = (e: any, game: IGames) => {
+    e.preventDefault();
+    dispatch(addGame({ email, game }));
   };
 
   return (
@@ -131,7 +145,12 @@ const Games: FC = () => {
             {current &&
               current?.map((game) => (
                 <Col span={6} className={style.card} key={game.id}>
-                  <GameCard game={game} small meta="full" />
+                  <GameCard
+                    game={game}
+                    small
+                    meta="full"
+                    addGame={(e) => handleClickAdd(e, game)}
+                  />
                 </Col>
               ))}
           </Row>
