@@ -2,7 +2,7 @@ import React from "react";
 import Game from "./pages/Game/Game";
 import Games from "./pages/Games/Games";
 import Home from "./pages/Home/Home";
-import Library from "./pages/Library";
+import Library from "./pages/Library/Library";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Search from "./pages/Search";

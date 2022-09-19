@@ -1,6 +1,7 @@
 .card {
   margin-bottom: 16px;
   transition: all .2s;
+  border-radius: 0.25rem;
   &:hover{
     transform: scale(101%);
   }
@@ -31,6 +32,32 @@
       text-overflow: ellipsis;
       white-space: nowrap;
       margin-bottom: 5px;
+    }
+  }
+}
+
+.flex {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.btns {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  .playBtn {
+    padding: 0 40px;
+  }
+  .deleteBtn {
+    border-radius: 0.25rem;
+    padding: 0.75rem 1rem;
+    cursor: pointer;
+    transition: .2s;
+    &:hover {
+      color: #fff;
+      background-color: #3a3f44;
     }
   }
 }
