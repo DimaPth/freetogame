@@ -14,7 +14,7 @@ interface GameCardProps {
   game: IGames;
   meta?: "title" | "full";
   small?: boolean;
-  addGame?: (e: any) => void;
+  addGame?: (e: React.MouseEvent) => void;
 }
 
 const GameCard: FC<GameCardProps> = ({ game, meta, small, addGame }) => {

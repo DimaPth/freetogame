@@ -3,10 +3,9 @@ import React, { FC, useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { GameCard } from "../../components/GameCard/GameCard";
 import RandomGames from "../../components/RandomGames/RandomGames";
-import { useAppSelector } from "../../hooks/redux";
 import { useAuth } from "../../hooks/useAuth";
 import { useGetMultipleSortedGamesQuery } from "../../redux/freeToGameApi";
-import { addGame, removeGame } from "../../redux/slices/localStorageSlice";
+import { addGame } from "../../redux/slices/localStorageSlice";
 import { IGames } from "../../types/IGames";
 import style from "./Games.module.scss";
 
@@ -14,7 +13,6 @@ const { Option, OptGroup } = Select;
 
 const Games: FC = () => {
   const { email } = useAuth();
-  const { users } = useAppSelector((state) => state.local);
   const [platform, setPlatform] = useState<string>("all");
   const [category, setCategory] = useState<string>();
   const [sortBy, setSortBy] = useState<string>();
@@ -35,18 +33,17 @@ const Games: FC = () => {
     };
   }, []);
 
-  // fix it later
-  const scrollHandler = (e: any) => {
+  const scrollHandler = () => {
     if (
-      e.target.documentElement.scrollHeight -
-        (e.target.documentElement.scrollTop + window.innerHeight) <
+      document.documentElement.scrollHeight -
+        (document.documentElement.scrollTop + window.innerHeight) <
       100
     ) {
       setLimit((prev) => prev + 10);
     }
   };
 
-  const handleClickAdd = (e: any, game: IGames) => {
+  const handleClickAdd = (e: React.MouseEvent, game: IGames) => {
     e.preventDefault();
     dispatch(addGame({ email, game }));
   };
