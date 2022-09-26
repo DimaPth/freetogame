@@ -2,7 +2,6 @@
   color: #7a8288;
 }
 .header {
-  padding: 0 10px;
   .title { 
     margin-bottom: 8px;
   }
@@ -12,15 +11,11 @@
 }
 
 .select {
-  padding: 0 10px;
+  padding-top: 25px;
   &_item {
     color: #fff;
   }
 }
 .games__list {
   padding-top: 25px;
-  .card {
-    display: flex;
-    justify-content: center;
-  }
 }

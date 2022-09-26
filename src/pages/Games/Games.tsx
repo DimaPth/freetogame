@@ -17,29 +17,31 @@ const Games: FC = () => {
   const [category, setCategory] = useState<string>();
   const [sortBy, setSortBy] = useState<string>();
 
-  const [limit, setLimit] = useState(10);
+  const [limit, setLimit] = useState(12);
 
   const { data, isLoading, isError, isSuccess } =
     useGetMultipleSortedGamesQuery({ platform, category, "sort-by": sortBy });
 
   const dispatch = useDispatch();
 
-  const current = isSuccess && data?.length > 0 && data?.slice(0, limit);
+  const current =
+    (isSuccess && data?.length > 0 && data?.slice(0, limit)) || [];
 
   useEffect(() => {
     document.addEventListener("scroll", scrollHandler);
     return function () {
       document.removeEventListener("scroll", scrollHandler);
     };
-  }, []);
+  }, [limit, current]);
 
   const scrollHandler = () => {
     if (
       document.documentElement.scrollHeight -
         (document.documentElement.scrollTop + window.innerHeight) <
-      100
+        100 &&
+      limit <= current?.length
     ) {
-      setLimit((prev) => prev + 10);
+      setLimit((prev) => prev + 12);
     }
   };
 
@@ -80,7 +82,7 @@ const Games: FC = () => {
               bordered={false}
               onChange={(value) => {
                 setPlatform(value);
-                setLimit(10);
+                setLimit(12);
               }}
             >
               <OptGroup label="Browse by platform:">
@@ -99,7 +101,7 @@ const Games: FC = () => {
               bordered={false}
               onChange={(value) => {
                 setCategory(value);
-                setLimit(10);
+                setLimit(12);
               }}
             >
               <OptGroup label="Browse by genre:">
@@ -125,7 +127,7 @@ const Games: FC = () => {
               bordered={false}
               onChange={(value) => {
                 setSortBy(value);
-                setLimit(10);
+                setLimit(12);
               }}
             >
               <OptGroup label="Sort by:">
@@ -138,17 +140,16 @@ const Games: FC = () => {
           </Col>
         </Row>
         <div className={style.games__list}>
-          <Row>
+          <Row justify="space-between">
             {current &&
               current?.map((game) => (
-                <Col span={6} className={style.card} key={game.id}>
-                  <GameCard
-                    game={game}
-                    small
-                    meta="full"
-                    addGame={(e) => handleClickAdd(e, game)}
-                  />
-                </Col>
+                <GameCard
+                  game={game}
+                  key={game.id}
+                  small
+                  meta="full"
+                  addGame={(e) => handleClickAdd(e, game)}
+                />
               ))}
           </Row>
         </div>
