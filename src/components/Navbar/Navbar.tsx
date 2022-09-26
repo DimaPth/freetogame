@@ -152,6 +152,7 @@ const Navbar: FC = () => {
                       alt="avatar"
                       width={32}
                       height={32}
+                      className={style.img}
                     />
                     {username}
                     <CaretDownOutlined />
