@@ -16,38 +16,21 @@ const RandomGames: FC<RandomGamesProps> = ({ games, meta }) => {
 
   return (
     <div>
-      <Row align="middle">
-        {games?.length <= 3 ? (
-          <>
-            {games.map((game) => (
-              <div className={style.card}>
-                <GameCard meta={meta} game={game} />
-              </div>
-            ))}
-          </>
-        ) : (
-          <>
-            <Col span={8} className={style.card}>
-              <GameCard
-                meta={meta}
-                game={games[getRandomInt(games?.length - 1)]}
-              />
-            </Col>
-            <Col span={8} className={style.card}>
-              <GameCard
-                meta={meta}
-                game={games[getRandomInt(games?.length - 1)]}
-              />
-            </Col>
-            <Col span={8} className={style.card}>
-              <GameCard
-                meta={meta}
-                game={games[getRandomInt(games?.length - 1)]}
-              />
-            </Col>
-          </>
-        )}
-      </Row>
+      {games?.length <= 3 ? (
+        <Row align="middle">
+          {games.map((game) => (
+            <div className={style.card} key={game.id}>
+              <GameCard meta={meta} game={game} />
+            </div>
+          ))}
+        </Row>
+      ) : (
+        <Row align="middle" justify="space-between">
+          <GameCard meta={meta} game={games[getRandomInt(games?.length - 1)]} />
+          <GameCard meta={meta} game={games[getRandomInt(games?.length - 1)]} />
+          <GameCard meta={meta} game={games[getRandomInt(games?.length - 1)]} />
+        </Row>
+      )}
     </div>
   );
 };
