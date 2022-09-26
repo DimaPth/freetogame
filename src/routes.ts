@@ -5,7 +5,7 @@ import Home from "./pages/Home/Home";
 import Library from "./pages/Library/Library";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
-import Search from "./pages/Search";
+import Search from "./pages/Search/Search";
 import Top from "./pages/Top/Top";
 
 interface IRoutes {
