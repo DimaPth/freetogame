@@ -32,14 +32,14 @@ const Games: FC = () => {
     return function () {
       document.removeEventListener("scroll", scrollHandler);
     };
-  }, [limit, current]);
+  }, []);
 
   const scrollHandler = () => {
     if (
       document.documentElement.scrollHeight -
         (document.documentElement.scrollTop + window.innerHeight) <
         100 &&
-      limit <= current?.length
+      limit < current?.length
     ) {
       setLimit((prev) => prev + 12);
     }
