@@ -42,7 +42,7 @@ const Game: FC = () => {
       {isSuccess && (
         <div
           style={{
-            backgroundImage: `url(https://www.freetogame.com/g/${data.id}/background.webp)`,
+            backgroundImage: `url(https://www.freetogame.com/g/${data.id}/background.jpg)`,
           }}
           className={style.background}
         >
