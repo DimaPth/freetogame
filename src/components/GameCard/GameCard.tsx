@@ -22,7 +22,7 @@ const GameCard: FC<GameCardProps> = ({ game, meta, small, addGame }) => {
   if (meta) {
     return (
       <Link
-        to={`/games/${game.id}`}
+        to={`/game/${game.id}`}
         className={cn(style.cardLink, { [style.small]: small })}
       >
         <Card
@@ -64,7 +64,7 @@ const GameCard: FC<GameCardProps> = ({ game, meta, small, addGame }) => {
                     {game?.genre}
                   </div>
                   <div>
-                    {game?.platform === "Browser" ? (
+                    {game?.platform === "Web Browser" ? (
                       <ChromeFilled />
                     ) : (
                       <WindowsFilled />
@@ -79,7 +79,7 @@ const GameCard: FC<GameCardProps> = ({ game, meta, small, addGame }) => {
     );
   } else {
     return (
-      <Link to={`/games/${game.id}`} className={style.cardLink}>
+      <Link to={`/game/${game.id}`} className={style.cardLink}>
         <Card
           className={style.card}
           bodyStyle={{ display: "none" }}

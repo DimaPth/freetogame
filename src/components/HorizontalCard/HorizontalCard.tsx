@@ -45,7 +45,7 @@ const HorizontalCard: FC<HorizontalCardProps> = ({
           <img src={game.thumbnail} alt={game.title} width={"160px"} />
         </div>
         <div className={classNames(style.description, style.flex)}>
-          <Link to={`/games/${game.id}`}>
+          <Link to={`/game/${game.id}`}>
             <Card.Meta title={game.title} />
           </Link>
           <div className={style.btns}>
@@ -64,7 +64,7 @@ const HorizontalCard: FC<HorizontalCardProps> = ({
       </Card>
     );
   return (
-    <Link to={`/games/${game.id}`}>
+    <Link to={`/game/${game.id}`}>
       <Card
         key={game.id}
         className={style.card}

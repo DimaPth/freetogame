@@ -43,19 +43,27 @@ const Navbar: FC = () => {
     <Menu
       selectable={false}
       items={[
-        { label: "MMORPG", key: "MMORPG" },
-        { label: "Shooter", key: "Shooter" },
-        { label: "MOBA", key: "MOBA" },
-        { label: "Anime", key: "Anime" },
-        { label: "Battle Royale", key: "Battle Royale" },
-        { label: "Strategy", key: "Strategy" },
-        { label: "Fantasy", key: "Fantasy" },
-        { label: "Sci-Fi", key: "Sci-Fi" },
-        { label: "Card Games", key: "Card Games" },
-        { label: "Racing", key: "Racing" },
-        { label: "Fighting", key: "Fighting" },
-        { label: "Social", key: "Social" },
-        { label: "Sports", key: "Sports" },
+        { label: <Link to="/games/all/mmorpg">MMORPG</Link>, key: "MMORPG" },
+        {
+          label: <Link to="/games/all/shooter">Shooter</Link>,
+          key: "Shooter",
+        },
+        { label: <Link to="/games/all/moba">MOBA</Link>, key: "MOBA" },
+        {
+          label: <Link to="/games/all/strategy">Strategy</Link>,
+          key: "Strategy",
+        },
+        {
+          label: <Link to="/games/all/card">Card Games</Link>,
+          key: "Card Games",
+        },
+        { label: <Link to="/games/all/racing">Racing</Link>, key: "Racing" },
+        {
+          label: <Link to="/games/all/fighting">Fighting</Link>,
+          key: "Fighting",
+        },
+        { label: <Link to="/games/all/social">Social</Link>, key: "Social" },
+        { label: <Link to="/games/all/sports">Sports</Link>, key: "Sports" },
       ]}
     />
   );
@@ -64,15 +72,42 @@ const Navbar: FC = () => {
     <Menu
       selectable={false}
       items={[
-        { label: "Browser MMORPG", key: "Browser MMORPG" },
-        { label: "Browser Shooter", key: "Browser Shooter" },
-        { label: "Browser Anime", key: "Browser Anime" },
-        { label: "Browser Strategy", key: "Browser Strategy" },
-        { label: "Browser Fantasy", key: "Browser Fantasy" },
-        { label: "Browser Sci-Fi", key: "Browser Sci-Fi" },
-        { label: "Browser Racing", key: "Browser Racing" },
-        { label: "Browser Social", key: "Browser Social" },
-        { label: "Browser Sports", key: "Browser Sports" },
+        {
+          label: <Link to="/games/browser/mmorpg">Browser MMORPG</Link>,
+          key: "MMORPG",
+        },
+        {
+          label: <Link to="/games/browser/shooter">Browser Shooter</Link>,
+          key: "Shooter",
+        },
+        {
+          label: <Link to="/games/browser/moba">Browser MOBA</Link>,
+          key: "MOBA",
+        },
+        {
+          label: <Link to="/games/browser/strategy">Browser Strategy</Link>,
+          key: "Strategy",
+        },
+        {
+          label: <Link to="/games/browser/card">Browser Card Games</Link>,
+          key: "Card Games",
+        },
+        {
+          label: <Link to="/games/browser/racing">Browser Racing</Link>,
+          key: "Racing",
+        },
+        {
+          label: <Link to="/games/browser/fighting">Browser Fighting</Link>,
+          key: "Fighting",
+        },
+        {
+          label: <Link to="/games/browser/social">Browser Social</Link>,
+          key: "Social",
+        },
+        {
+          label: <Link to="/games/browser/sports">Browser Sports</Link>,
+          key: "Sports",
+        },
       ]}
     />
   );
@@ -106,7 +141,7 @@ const Navbar: FC = () => {
                 alt="logo"
               />
             </Link>
-            <Link to={RouteNames.Games}>
+            <Link to="/games/all">
               <Dropdown overlay={freeGames}>
                 <Space size={4}>
                   Free games
@@ -114,7 +149,7 @@ const Navbar: FC = () => {
                 </Space>
               </Dropdown>
             </Link>
-            <Link to={RouteNames.Games}>
+            <Link to="/games/browser">
               <Dropdown overlay={browserGames}>
                 <Space size={4}>
                   Browser games

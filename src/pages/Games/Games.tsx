@@ -1,6 +1,7 @@
 import { Col, Row, Select, Typography } from "antd";
 import React, { FC, useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
+import { Link, useParams } from "react-router-dom";
 import { GameCard } from "../../components/GameCard/GameCard";
 import RandomGames from "../../components/RandomGames/RandomGames";
 import { useAuth } from "../../hooks/useAuth";
@@ -13,6 +14,7 @@ const { Option, OptGroup } = Select;
 
 const Games: FC = () => {
   const { email } = useAuth();
+  const params = useParams();
   const [platform, setPlatform] = useState<string>("all");
   const [category, setCategory] = useState<string>();
   const [sortBy, setSortBy] = useState<string>();
@@ -28,18 +30,23 @@ const Games: FC = () => {
     (isSuccess && data?.length > 0 && data?.slice(0, limit)) || [];
 
   useEffect(() => {
+    params.platform ? setPlatform(params.platform) : setPlatform("all");
+    params.genre ? setCategory(params.genre) : setCategory(undefined);
+  }, [params]);
+
+  useEffect(() => {
     document.addEventListener("scroll", scrollHandler);
     return function () {
       document.removeEventListener("scroll", scrollHandler);
     };
-  }, []);
+  }, [limit, data]);
 
   const scrollHandler = () => {
     if (
       document.documentElement.scrollHeight -
         (document.documentElement.scrollTop + window.innerHeight) <
         100 &&
-      limit < current?.length
+      limit < (isSuccess && data?.length)
     ) {
       setLimit((prev) => prev + 12);
     }
@@ -77,6 +84,7 @@ const Games: FC = () => {
             <span className={style.dark_text}>Platform: </span>
             <Select
               defaultValue="All Platforms"
+              value={platform}
               dropdownStyle={{ minWidth: "200px" }}
               className={style.select_item}
               bordered={false}
@@ -86,9 +94,15 @@ const Games: FC = () => {
               }}
             >
               <OptGroup label="Browse by platform:">
-                <Option value="pc">Windows (PC)</Option>
-                <Option value="browser">Browser (Web)</Option>
-                <Option value="all">All Platforms</Option>
+                <Option value="pc">
+                  <Link to={`/games/pc/${category}`}>Windows (PC)</Link>
+                </Option>
+                <Option value="browser">
+                  <Link to={`/games/browser/${category}`}>Browser (Web)</Link>
+                </Option>
+                <Option value="all">
+                  <Link to={`/games/all/${category}`}>All Platforms</Link>
+                </Option>
               </OptGroup>
             </Select>
           </Col>
@@ -96,6 +110,7 @@ const Games: FC = () => {
             <span className={style.dark_text}>Genre/Tag: </span>
             <Select
               defaultValue="All Genres"
+              value={category || "All Genres"}
               dropdownStyle={{ minWidth: "200px" }}
               className={style.select_item}
               bordered={false}
@@ -105,16 +120,33 @@ const Games: FC = () => {
               }}
             >
               <OptGroup label="Browse by genre:">
-                <Option value="mmo">MMO</Option>
-                <Option value="mmorpg">MMORPG</Option>
-                <Option value="shooter">Shooter</Option>
-                <Option value="strategy">Strategy</Option>
-                <Option value="moba">Moba</Option>
-                <Option value="card">Card Games</Option>
-                <Option value="racing">Racing</Option>
-                <Option value="sports">Sports</Option>
-                <Option value="social">Social</Option>
-                <Option value="fighting">Fighting</Option>
+                <Option value="mmorpg">
+                  <Link to={`/games/${platform}/mmorpg`}>MMORPG</Link>
+                </Option>
+                <Option value="shooter">
+                  <Link to={`/games/${platform}/shooter`}>Shooter</Link>
+                </Option>
+                <Option value="strategy">
+                  <Link to={`/games/${platform}/strategy`}>Strategy</Link>
+                </Option>
+                <Option value="moba">
+                  <Link to={`/games/${platform}/moba`}>Moba</Link>
+                </Option>
+                <Option value="card">
+                  <Link to={`/games/${platform}/card`}>Card Games</Link>
+                </Option>
+                <Option value="racing">
+                  <Link to={`/games/${platform}/racing`}>Racing</Link>
+                </Option>
+                <Option value="sports">
+                  <Link to={`/games/${platform}/sports`}>Sports</Link>
+                </Option>
+                <Option value="social">
+                  <Link to={`/games/${platform}/social`}>Social</Link>
+                </Option>
+                <Option value="fighting">
+                  <Link to={`/games/${platform}/fighting`}>Fighting</Link>
+                </Option>
               </OptGroup>
             </Select>
           </Col>
@@ -141,7 +173,7 @@ const Games: FC = () => {
         </Row>
         <div className={style.games__list}>
           <Row justify="space-between">
-            {current &&
+            {isSuccess &&
               current?.map((game) => (
                 <GameCard
                   game={game}
