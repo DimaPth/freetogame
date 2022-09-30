@@ -1,30 +1,24 @@
 import { Col, Row, Select, Typography } from "antd";
 import React, { FC, useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
-import { Link, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { GameCard } from "../../components/GameCard/GameCard";
 import RandomGames from "../../components/RandomGames/RandomGames";
-import { useAuth } from "../../hooks/useAuth";
 import { useGetMultipleSortedGamesQuery } from "../../redux/freeToGameApi";
-import { addGame } from "../../redux/slices/localStorageSlice";
-import { IGames } from "../../types/IGames";
 import style from "./Games.module.scss";
 
 const { Option, OptGroup } = Select;
 
 const Games: FC = () => {
-  const { email } = useAuth();
-  const params = useParams();
   const [platform, setPlatform] = useState<string>("all");
   const [category, setCategory] = useState<string>();
   const [sortBy, setSortBy] = useState<string>();
-
   const [limit, setLimit] = useState(12);
+
+  const params = useParams();
+  const navigate = useNavigate();
 
   const { data, isLoading, isError, isSuccess } =
     useGetMultipleSortedGamesQuery({ platform, category, "sort-by": sortBy });
-
-  const dispatch = useDispatch();
 
   const current =
     (isSuccess && data?.length > 0 && data?.slice(0, limit)) || [];
@@ -52,10 +46,7 @@ const Games: FC = () => {
     }
   };
 
-  const handleClickAdd = (e: React.MouseEvent, game: IGames) => {
-    e.preventDefault();
-    dispatch(addGame({ email, game }));
-  };
+  if (isLoading) return <h1>Loading...</h1>;
 
   return (
     <div className="container">
@@ -91,18 +82,15 @@ const Games: FC = () => {
               onChange={(value) => {
                 setPlatform(value);
                 setLimit(12);
+                navigate(
+                  category ? `/games/${value}/${category}` : `/games/${value}`
+                );
               }}
             >
               <OptGroup label="Browse by platform:">
-                <Option value="pc">
-                  <Link to={`/games/pc/${category}`}>Windows (PC)</Link>
-                </Option>
-                <Option value="browser">
-                  <Link to={`/games/browser/${category}`}>Browser (Web)</Link>
-                </Option>
-                <Option value="all">
-                  <Link to={`/games/all/${category}`}>All Platforms</Link>
-                </Option>
+                <Option value="pc">Windows (PC)</Option>
+                <Option value="browser">Browser (Web)</Option>
+                <Option value="all">All Platforms</Option>
               </OptGroup>
             </Select>
           </Col>
@@ -117,36 +105,19 @@ const Games: FC = () => {
               onChange={(value) => {
                 setCategory(value);
                 setLimit(12);
+                navigate(`/games/${platform}/${value}`);
               }}
             >
               <OptGroup label="Browse by genre:">
-                <Option value="mmorpg">
-                  <Link to={`/games/${platform}/mmorpg`}>MMORPG</Link>
-                </Option>
-                <Option value="shooter">
-                  <Link to={`/games/${platform}/shooter`}>Shooter</Link>
-                </Option>
-                <Option value="strategy">
-                  <Link to={`/games/${platform}/strategy`}>Strategy</Link>
-                </Option>
-                <Option value="moba">
-                  <Link to={`/games/${platform}/moba`}>Moba</Link>
-                </Option>
-                <Option value="card">
-                  <Link to={`/games/${platform}/card`}>Card Games</Link>
-                </Option>
-                <Option value="racing">
-                  <Link to={`/games/${platform}/racing`}>Racing</Link>
-                </Option>
-                <Option value="sports">
-                  <Link to={`/games/${platform}/sports`}>Sports</Link>
-                </Option>
-                <Option value="social">
-                  <Link to={`/games/${platform}/social`}>Social</Link>
-                </Option>
-                <Option value="fighting">
-                  <Link to={`/games/${platform}/fighting`}>Fighting</Link>
-                </Option>
+                <Option value="mmorpg">MMORPG</Option>
+                <Option value="shooter">Shooter</Option>
+                <Option value="strategy">Strategy</Option>
+                <Option value="moba">Moba</Option>
+                <Option value="card">Card Games</Option>
+                <Option value="racing">Racing</Option>
+                <Option value="sports">Sports</Option>
+                <Option value="social">Social</Option>
+                <Option value="fighting">Fighting</Option>
               </OptGroup>
             </Select>
           </Col>
@@ -180,7 +151,7 @@ const Games: FC = () => {
                   key={game.id}
                   small
                   meta="full"
-                  addGame={(e) => handleClickAdd(e, game)}
+                  // addGame={(e) => handleClickAdd(e, game)}
                 />
               ))}
           </Row>

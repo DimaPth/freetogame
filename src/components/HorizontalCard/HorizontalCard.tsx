@@ -87,7 +87,7 @@ const HorizontalCard: FC<HorizontalCardProps> = ({
             width={type === "top" ? "260px" : "160px"}
           />
         </div>
-        <div className={classNames(style.description)}>
+        <div className={style.description}>
           <Card.Meta title={game.title} />
           <>
             <div className={style.meta}>{game.short_description}</div>
@@ -106,7 +106,7 @@ const HorizontalCard: FC<HorizontalCardProps> = ({
           </>
         </div>
         {type === "default" && (
-          <div>
+          <div className={style.icons}>
             <Space size="large">
               {game.platform === "Web Browser" ? (
                 <ChromeFilled />

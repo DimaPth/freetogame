@@ -12,11 +12,11 @@ import { RouteNames } from "../../routes";
 import style from "./Navbar.module.scss";
 import { getAuth, signOut } from "firebase/auth";
 import { setUser } from "../../redux/slices/userSlice";
-import { useDispatch } from "react-redux";
+import { useAppDispatch } from "../../hooks/redux";
 
 const Navbar: FC = () => {
   const { isAuth, username } = useAuth();
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
   const auth = getAuth();
@@ -123,7 +123,7 @@ const Navbar: FC = () => {
       selectable={false}
       onClick={onClick}
       items={[
-        { label: "My Library", key: "Library" },
+        { label: <Link to="/library">My Library</Link>, key: "Library" },
         { label: "Logout", key: "Logout" },
       ]}
     />
