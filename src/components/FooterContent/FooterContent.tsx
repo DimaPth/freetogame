@@ -125,14 +125,14 @@ const FooterContent: FC = () => {
         </Row>
         <Divider />
         <Row justify="space-between" align="middle">
-          <Col xs={{ span: 24 }}>
+          <Col sm={{ span: 16 }} xs={{ span: 24 }}>
             <span className={style.small}>
               © {new Date().getFullYear()} Digiwalls Media, all rights reserved.
               All trademarks are property of their respective owners.
             </span>
           </Col>
           <Divider className={style.mobile} />
-          <Col xs={{ span: 24 }}>
+          <Col sm={{ span: 8 }} xs={{ span: 24 }} className={style.brands}>
             <Space size="large">
               <a
                 href="https://www.facebook.com/FreeToGameOfficial/"

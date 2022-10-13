@@ -24,6 +24,10 @@
         text-align: center;
       }
     }
+    .brands {
+      display: flex;
+      justify-content: flex-end;
+    }
     .small {
       font-size: 80%;
     }
