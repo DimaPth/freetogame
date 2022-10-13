@@ -25,12 +25,11 @@ const GameCard: FC<GameCardProps> = ({ game, meta, small }) => {
   const { isAuth, email } = useAuth();
   const { users } = useAppSelector((state) => state.local);
   const [isSelected, setIsSelected] = useState(false);
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     email && setIsSelected(users[email]?.some((lgame) => lgame.id === game.id));
   }, [email]);
-
-  const dispatch = useAppDispatch();
 
   const handleClickAdd = (e: React.MouseEvent) => {
     e.preventDefault();

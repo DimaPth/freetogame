@@ -1,15 +1,15 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { IGames } from "../../types/IGames";
+import { IGame, IGames } from "../../types/IGames";
 
 interface LocalState {
   users: {
-    [key: string]: IGames[]
+    [key: string]: (IGames | IGame)[]
   }
 }
 
 interface IPayload {
   email: string;
-  game: IGames;
+  game: IGames | IGame;
 }
 
 const initialState: LocalState = {

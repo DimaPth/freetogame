@@ -10,16 +10,45 @@ import {
   QqOutlined,
 } from "@ant-design/icons";
 import CustomBtn from "../../components/CustomBtn/CustomBtn";
+import { useAuth } from "../../hooks/useAuth";
+import { useAppDispatch, useAppSelector } from "../../hooks/redux";
+import { addGame, removeGame } from "../../redux/slices/localStorageSlice";
 
 const Game: FC = () => {
+  const { isAuth, email } = useAuth();
+  const { users } = useAppSelector((state) => state.local);
   const { id } = useParams<{ id?: string }>();
   const [gameId, setGameId] = useState("");
+  const [isSelected, setIsSelected] = useState(false);
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    email &&
+      id &&
+      setIsSelected(users[email]?.some((lgame) => lgame.id === +id));
+  }, [email]);
 
   useEffect(() => {
     id && setGameId(id);
   }, [id]);
 
   const { data, isSuccess } = useGetGameByIDQuery(gameId);
+
+  const handleClickAdd = (e: React.MouseEvent) => {
+    e.preventDefault();
+    if (isAuth && email && data) {
+      dispatch(addGame({ email, game: data }));
+      setIsSelected((game) => !game);
+    } else {
+      alert("You must be signed in to perform this action");
+    }
+  };
+
+  const handleClickRemove = (e: React.MouseEvent) => {
+    e.preventDefault();
+    email && data && dispatch(removeGame({ email, game: data }));
+    setIsSelected((game) => !game);
+  };
 
   const info = [
     "title",
@@ -78,6 +107,15 @@ const Game: FC = () => {
                       </CustomBtn>
                     </a>
                   </div>
+                  {isSelected ? (
+                    <CustomBtn onClick={(e) => handleClickRemove(e)}>
+                      Remove
+                    </CustomBtn>
+                  ) : (
+                    <CustomBtn onClick={(e) => handleClickAdd(e)}>
+                      Add
+                    </CustomBtn>
+                  )}
                   <span className={style.require}>
                     <QqOutlined /> Requires 3rd-Party Account
                   </span>
