@@ -1,11 +1,13 @@
 import {
   AppstoreFilled,
   CaretDownOutlined,
+  MenuFoldOutlined,
+  MenuUnfoldOutlined,
   SearchOutlined,
 } from "@ant-design/icons";
-import { Col, Dropdown, Layout, Menu, Row, Space } from "antd";
+import { Col, Dropdown, Layout, Menu, Modal, Row, Space } from "antd";
 import type { MenuProps } from "antd";
-import React, { FC } from "react";
+import React, { FC, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../hooks/useAuth";
 import { RouteNames } from "../../routes";
@@ -13,8 +15,10 @@ import style from "./Navbar.module.scss";
 import { getAuth, signOut } from "firebase/auth";
 import { setUser } from "../../redux/slices/userSlice";
 import { useAppDispatch } from "../../hooks/redux";
+import cn from "classnames";
 
 const Navbar: FC = () => {
+  const [modalOpen, setModalOpen] = useState(false);
   const { isAuth, username } = useAuth();
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
@@ -42,6 +46,7 @@ const Navbar: FC = () => {
   const freeGames = (
     <Menu
       selectable={false}
+      onClick={() => setModalOpen(false)}
       items={[
         { label: <Link to="/games/all/mmorpg">MMORPG</Link>, key: "MMORPG" },
         {
@@ -64,6 +69,7 @@ const Navbar: FC = () => {
         },
         { label: <Link to="/games/all/social">Social</Link>, key: "Social" },
         { label: <Link to="/games/all/sports">Sports</Link>, key: "Sports" },
+        { label: <Link to="/games/all">All Free Games</Link>, key: "All" },
       ]}
     />
   );
@@ -71,6 +77,7 @@ const Navbar: FC = () => {
   const browserGames = (
     <Menu
       selectable={false}
+      onClick={() => setModalOpen(false)}
       items={[
         {
           label: <Link to="/games/browser/mmorpg">Browser MMORPG</Link>,
@@ -108,6 +115,10 @@ const Navbar: FC = () => {
           label: <Link to="/games/browser/sports">Browser Sports</Link>,
           key: "Sports",
         },
+        {
+          label: <Link to="/games/browser">All Browser Games</Link>,
+          key: "All",
+        },
       ]}
     />
   );
@@ -116,6 +127,7 @@ const Navbar: FC = () => {
     if (e.key === "Logout") {
       logoutUser();
     }
+    setModalOpen(false);
   };
 
   const account = (
@@ -132,15 +144,17 @@ const Navbar: FC = () => {
   return (
     <Layout.Header className={style.header}>
       <Row align="middle" className={style.header__content}>
-        <Col span={16}>
+        <Col span={4} xl={{ span: 4 }} lg={{ span: 5 }}>
+          <Link to={RouteNames.Home}>
+            <img
+              className={style.img}
+              src="https://www.freetogame.com/assets/images/freetogame-logo.png"
+              alt="logo"
+            />
+          </Link>
+        </Col>
+        <Col xl={{ span: 12 }} lg={{ span: 11 }} className={style.full}>
           <Space size="large">
-            <Link to={RouteNames.Home}>
-              <img
-                className={style.img}
-                src="https://www.freetogame.com/assets/images/freetogame-logo.png"
-                alt="logo"
-              />
-            </Link>
             <Link to="/games/all">
               <Dropdown overlay={freeGames}>
                 <Space size={4}>
@@ -162,7 +176,7 @@ const Navbar: FC = () => {
             </Link>
           </Space>
         </Col>
-        <Col span={5} offset={3}>
+        <Col span={8} className={style.full}>
           <Row justify="end">
             <Space size="middle">
               <Link to={RouteNames.Search}>
@@ -204,6 +218,119 @@ const Navbar: FC = () => {
                 </>
               )}
             </Space>
+          </Row>
+        </Col>
+        <Col span={4} offset={16} className={style.mobile}>
+          <Row justify="end">
+            {modalOpen ? (
+              <MenuFoldOutlined
+                className={style.burger}
+                onClick={() => setModalOpen(false)}
+              />
+            ) : (
+              <MenuUnfoldOutlined
+                className={style.burger}
+                onClick={() => setModalOpen(true)}
+              />
+            )}
+            <Modal
+              bodyStyle={{ backgroundColor: "#272b30" }}
+              style={{ top: 55, right: 0 }}
+              width={"100%"}
+              mask={false}
+              footer={null}
+              visible={modalOpen}
+              onOk={() => setModalOpen(false)}
+              onCancel={() => setModalOpen(false)}
+            >
+              <div className={style.modalLink}>
+                <Dropdown
+                  overlay={freeGames}
+                  trigger={["click"]}
+                  overlayStyle={{ width: "300px" }}
+                >
+                  <Space size={4}>
+                    Free games
+                    <CaretDownOutlined />
+                  </Space>
+                </Dropdown>
+              </div>
+              <div className={style.modalLink}>
+                <Dropdown
+                  overlay={browserGames}
+                  trigger={["click"]}
+                  overlayStyle={{ width: "300px" }}
+                >
+                  <Space size={4}>
+                    Browser games
+                    <CaretDownOutlined />
+                  </Space>
+                </Dropdown>
+              </div>
+              <Link
+                to={RouteNames.Top}
+                className={style.modalLink}
+                onClick={() => setModalOpen(false)}
+              >
+                <div>Top {new Date().getFullYear()}</div>
+              </Link>
+              <Link
+                to={RouteNames.Search}
+                className={style.modalLink}
+                onClick={() => setModalOpen(false)}
+              >
+                <div>
+                  <SearchOutlined /> Search
+                </div>
+              </Link>
+              <Link
+                to={isAuth ? RouteNames.Library : RouteNames.Login}
+                className={style.modalLink}
+                onClick={() => setModalOpen(false)}
+              >
+                <div>
+                  <AppstoreFilled /> Library
+                </div>
+              </Link>
+              {isAuth ? (
+                <div className={style.modalLink}>
+                  <Dropdown
+                    overlay={account}
+                    trigger={["click"]}
+                    className={style.account}
+                  >
+                    <Space size={4}>
+                      <img
+                        src="https://www.freetogame.com/assets/images/avatars/default/default-small.png"
+                        alt="avatar"
+                        width={32}
+                        height={32}
+                        className={style.img}
+                      />
+                      {username}
+                      <CaretDownOutlined />
+                    </Space>
+                  </Dropdown>
+                </div>
+              ) : (
+                <>
+                  <Link
+                    to={RouteNames.Login}
+                    className={style.modalLink}
+                    onClick={() => setModalOpen(false)}
+                  >
+                    <div>Log In</div>
+                  </Link>
+                  <Link
+                    to={RouteNames.Register}
+                    className={cn(style.linkBtn, style.modalLink)}
+                    onClick={() => setModalOpen(false)}
+                  >
+                    Join Free
+                  </Link>
+                </>
+              )}
+            </Modal>
           </Row>
         </Col>
       </Row>

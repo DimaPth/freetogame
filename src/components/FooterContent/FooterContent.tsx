@@ -13,7 +13,12 @@ const FooterContent: FC = () => {
     <Footer className={style.footer}>
       <div className={style.footer__wrap}>
         <Row align="middle" className={style.row}>
-          <Col span={5} className={style.col}>
+          <Col
+            md={{ span: 5 }}
+            sm={{ span: 6 }}
+            xs={{ span: 24 }}
+            className={style.col}
+          >
             <a
               href="https://www.freetogame.com/about"
               target="_blank"
@@ -39,7 +44,13 @@ const FooterContent: FC = () => {
               Contact Us
             </a>
           </Col>
-          <Col span={5} className={style.col}>
+          <Divider className={style.mobile} />
+          <Col
+            md={{ span: 5 }}
+            sm={{ span: 6 }}
+            xs={{ span: 24 }}
+            className={style.col}
+          >
             <a
               href="https://www.freetogame.com/faq"
               target="_blank"
@@ -65,7 +76,13 @@ const FooterContent: FC = () => {
               Feature Request
             </a>
           </Col>
-          <Col span={5} className={style.col}>
+          <Divider className={style.mobile} />
+          <Col
+            md={{ span: 5 }}
+            sm={{ span: 8 }}
+            xs={{ span: 24 }}
+            className={style.col}
+          >
             <a
               href="https://www.freetogame.com/privacy-policy"
               target="_blank"
@@ -91,7 +108,13 @@ const FooterContent: FC = () => {
               Terms of Use
             </a>
           </Col>
-          <Col span={9} className={style.logo}>
+          <Divider className={style.mobile} />
+          <Col
+            md={{ span: 9 }}
+            sm={{ span: 4 }}
+            xs={{ span: 24 }}
+            className={style.logo}
+          >
             <div>
               <img
                 src="https://www.freetogame.com/assets/images/logo-footer.png"
@@ -102,13 +125,14 @@ const FooterContent: FC = () => {
         </Row>
         <Divider />
         <Row justify="space-between" align="middle">
-          <Col>
+          <Col xs={{ span: 24 }}>
             <span className={style.small}>
               © {new Date().getFullYear()} Digiwalls Media, all rights reserved.
               All trademarks are property of their respective owners.
             </span>
           </Col>
-          <Col>
+          <Divider className={style.mobile} />
+          <Col xs={{ span: 24 }}>
             <Space size="large">
               <a
                 href="https://www.facebook.com/FreeToGameOfficial/"

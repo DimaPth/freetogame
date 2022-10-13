@@ -97,3 +97,42 @@
 .small {
   width: 262px;
 }
+
+@media screen and (max-width: 1200px) {
+  .cardLink {
+    width: 300px;
+    .card {
+      &__cover {
+        img {
+          width: 300px;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .cardLink{
+    width: 220px;
+    .card{
+      &__cover {
+        img {
+          width: 220px;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .cardLink {
+    width: 100%;
+    .card{
+      &__cover {
+        img {
+          width: 100%;
+        }
+      }
+    }
+  }
+}

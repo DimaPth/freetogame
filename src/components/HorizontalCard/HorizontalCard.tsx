@@ -35,29 +35,30 @@ const HorizontalCard: FC<HorizontalCardProps> = ({
         className={style.card}
         hoverable
         bodyStyle={{
-          display: "flex",
-          alignItems: "center",
-          padding: "12px 24px",
-          cursor: "default",
+          padding: "0.5rem",
         }}
       >
-        <div className={style.img_wrap}>
-          <img src={game.thumbnail} alt={game.title} width={"160px"} />
-        </div>
-        <div className={classNames(style.description, style.flex)}>
+        <div className={classNames(style.card__body, style.card__body_library)}>
           <Link to={`/game/${game.id}`}>
-            <Card.Meta title={game.title} />
+            <div className={style.img_wrap}>
+              <img src={game.thumbnail} alt={game.title} width={"160px"} />
+            </div>
           </Link>
-          <div className={style.btns}>
-            <a href={game?.game_url} target="_blank" rel="noreferrer">
-              <CustomBtn type="link">
-                <strong className={style.playBtn}>
-                  PLAY NOW <PlaySquareOutlined />
-                </strong>
-              </CustomBtn>
-            </a>
-            <div className={style.deleteBtn} onClick={removeGame}>
-              <DeleteFilled />
+          <div className={classNames(style.description, style.flex)}>
+            <Link to={`/game/${game.id}`}>
+              <Card.Meta title={game.title} />
+            </Link>
+            <div className={style.btns}>
+              <a href={game?.game_url} target="_blank" rel="noreferrer">
+                <CustomBtn type="link">
+                  <strong className={style.playBtn}>
+                    PLAY NOW <PlaySquareOutlined />
+                  </strong>
+                </CustomBtn>
+              </a>
+              <div className={style.deleteBtn} onClick={removeGame}>
+                <DeleteFilled />
+              </div>
             </div>
           </div>
         </div>
@@ -69,54 +70,54 @@ const HorizontalCard: FC<HorizontalCardProps> = ({
         key={game.id}
         className={style.card}
         hoverable
-        bodyStyle={{
-          display: "flex",
-          alignItems: "center",
-          padding: "12px 24px",
-        }}
+        bodyStyle={{ padding: "0.5rem" }}
       >
-        {type === "top" && (
-          <Title level={2} className={style.number}>
-            {number}
-          </Title>
-        )}
-        <div className={style.img_wrap}>
-          <img
-            src={game.thumbnail}
-            alt={game.title}
-            width={type === "top" ? "260px" : "160px"}
-          />
-        </div>
-        <div className={style.description}>
-          <Card.Meta title={game.title} />
-          <>
-            <div className={style.meta}>{game.short_description}</div>
-            <div>
-              {type === "top" ? (
-                <span>
-                  <EnvironmentFilled /> {game.title} is currenty one of the
-                  most-played Free To Play games in {new Date().getFullYear()}
-                </span>
-              ) : (
-                <span className={classNames(style.badge, style.dark)}>
-                  {game.genre}
-                </span>
-              )}
-            </div>
-          </>
-        </div>
-        {type === "default" && (
-          <div className={style.icons}>
-            <Space size="large">
+        <div
+          className={classNames(style.card__body, {
+            [style.card__body_top]: type === "top",
+          })}
+        >
+          <div
+            className={classNames(style.img__wrap, {
+              [style.top__img]: type === "top",
+            })}
+          >
+            {type === "top" && (
+              <Title level={2} className={style.number}>
+                {number}
+              </Title>
+            )}
+            <img src={game.thumbnail} alt={game.title} />
+          </div>
+          <div className={style.description}>
+            <Card.Meta title={game.title} />
+            <>
+              <div className={style.meta}>{game.short_description}</div>
+              <div>
+                {type === "top" ? (
+                  <span className={style.description__top}>
+                    <EnvironmentFilled /> {game.title} is currenty one of the
+                    most-played Free To Play games in {new Date().getFullYear()}
+                  </span>
+                ) : (
+                  <span className={classNames(style.badge, style.dark)}>
+                    {game.genre}
+                  </span>
+                )}
+              </div>
+            </>
+          </div>
+          {type === "default" && (
+            <div className={style.icons}>
               {game.platform === "Web Browser" ? (
                 <ChromeFilled />
               ) : (
                 <WindowsFilled />
               )}
               <span className={style.badge}>FREE</span>
-            </Space>
-          </div>
-        )}
+            </div>
+          )}
+        </div>
       </Card>
     </Link>
   );

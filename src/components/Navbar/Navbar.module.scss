@@ -12,24 +12,77 @@
   .img {
     transform: translateY(-2px);
   }
-  .account {
-    font-size: 12px;
-    cursor: pointer;
-    &:hover {
-      color: #fff;
-    }
-  }
-  .linkBtn {
-      border: 1px solid #4799eb;
-      color: #4799eb;
-      transition: all .3s;
-      padding: 12px 16px;
-      border-radius: 5px;
-      &:hover {
-        border: 1px solid #fff;
-        color: #fff;
-      }
-
+  .burger {
+    font-size: 32px;
   }
 }
 
+.account {
+  font-size: 12px;
+  cursor: pointer;
+  &:hover {
+    color: #fff;
+  }
+}
+
+.linkBtn {
+  text-align: center;
+  border: 1px solid #4799eb;
+  color: #4799eb;
+  transition: all .3s;
+  padding: 12px 16px;
+  border-radius: 5px;
+  &:hover {
+    border: 1px solid #fff;
+    color: #fff;
+  }
+}
+
+.modalLink {
+  display: block;
+  padding: 1rem;
+  cursor: pointer;
+  transition: .2s;
+  &:hover {
+    color: #fff
+  }
+}
+
+.mobile {
+  display: none;
+}
+
+.full {
+  display: block;
+}
+
+@media screen and (max-width: 1200px) {
+  .header {
+    &__content {
+      width: 1024px;
+    }
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .header {
+    &__content {
+      width: 768px;
+    }
+  }
+  
+  .mobile {
+    display: block;
+  }
+  .full {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .header {
+    &__content {
+      width: 100%;
+    }
+  }
+}

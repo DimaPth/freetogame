@@ -10,7 +10,7 @@ import {
   MinusSquareFilled,
   WindowsFilled,
 } from "@ant-design/icons";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../hooks/redux";
 import { useAuth } from "../../hooks/useAuth";
 import { addGame, removeGame } from "../../redux/slices/localStorageSlice";
@@ -30,19 +30,21 @@ const GameCard: FC<GameCardProps> = ({ game, meta, small }) => {
     email && setIsSelected(users[email]?.some((lgame) => lgame.id === game.id));
   }, [email]);
 
-  const navigate = useNavigate();
-
   const dispatch = useAppDispatch();
 
   const handleClickAdd = (e: React.MouseEvent) => {
     e.preventDefault();
-    isAuth ? dispatch(addGame({ email, game })) : navigate("/login");
-    setIsSelected((game) => !game);
+    if (isAuth && email) {
+      dispatch(addGame({ email, game }));
+      setIsSelected((game) => !game);
+    } else {
+      alert("You must be signed in to perform this action");
+    }
   };
 
   const handleClickRemove = (e: React.MouseEvent) => {
     e.preventDefault();
-    dispatch(removeGame({ email, game }));
+    email && dispatch(removeGame({ email, game }));
     setIsSelected((game) => !game);
   };
 

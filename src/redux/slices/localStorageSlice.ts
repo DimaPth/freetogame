@@ -7,6 +7,11 @@ interface LocalState {
   }
 }
 
+interface IPayload {
+  email: string;
+  game: IGames;
+}
+
 const initialState: LocalState = {
   users: {}
 }
@@ -15,12 +20,12 @@ export const localStorageSlice = createSlice({
   name: 'local',
   initialState,
   reducers: {
-    addGame (state, action: PayloadAction<any>) {
-      state.users[action.payload.email] 
+    addGame (state, action: PayloadAction<IPayload>) {
+      action.payload.email && state.users[action.payload.email] 
         ? state.users[action.payload.email] = [...state.users[action.payload.email].filter(item => item.id !== action.payload.game.id), action.payload.game]
         : state.users[action.payload.email] = [action.payload.game]
     },
-    removeGame (state, action: PayloadAction<any>) {
+    removeGame (state, action: PayloadAction<IPayload>) {
       state.users[action.payload.email] = state.users[action.payload.email].filter(item => item.id !== action.payload.game.id)
     }
   },

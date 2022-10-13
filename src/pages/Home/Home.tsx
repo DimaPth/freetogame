@@ -29,8 +29,8 @@ const Home: FC = () => {
               Track what you've played and search for what to play next! Plus
               get free premium loot!
             </Typography.Paragraph>
-            <Typography.Paragraph>
-              <Space>
+            <Row justify="center">
+              <Space className={style.btns}>
                 <Link to="/register">
                   <CustomBtn type="link">
                     <b>GET STARTED</b> <span>it's free</span>
@@ -40,7 +40,7 @@ const Home: FC = () => {
                   <CustomBtn type="ghost">Browse Games</CustomBtn>
                 </Link>
               </Space>
-            </Typography.Paragraph>
+            </Row>
           </div>
         </section>
       )}
@@ -55,8 +55,10 @@ const Home: FC = () => {
             <RandomGames games={data} meta="title" />
             <div className={style.content__main}>
               <Row>
-                <Col span={16}>
-                  <Typography.Title level={3}>Recently Added</Typography.Title>
+                <Col sm={{ span: 16 }} xs={{ span: 24 }}>
+                  <Typography.Title level={3} className={style.title}>
+                    Recently Added
+                  </Typography.Title>
                   {newGames?.map((item) => (
                     <HorizontalCard game={item} key={item.id} />
                   ))}
@@ -68,8 +70,12 @@ const Home: FC = () => {
                     </Link>
                   </div>
                 </Col>
-                <Col span={8} className={style.mostPlayed}>
-                  <Typography.Title level={3}>
+                <Col
+                  sm={{ span: 8 }}
+                  xs={{ span: 24 }}
+                  className={style.mostPlayed}
+                >
+                  <Typography.Title level={3} className={style.title}>
                     Most Played Today
                   </Typography.Title>
                   <div className={style.mostPlayed__list}>
@@ -82,20 +88,26 @@ const Home: FC = () => {
             </div>
             {!isAuth && (
               <div className={style.about}>
-                <Row>
-                  <Col span={10}>
-                    <div>
-                      <img
-                        src="https://www.freetogame.com/assets/images/ftg-img.jpg"
-                        alt="logo"
-                      />
-                    </div>
+                <Row align="middle">
+                  <Col
+                    sm={{ span: 10 }}
+                    xs={{ span: 24 }}
+                    className={style.about__logo}
+                  >
+                    <img
+                      src="https://www.freetogame.com/assets/images/ftg-img.jpg"
+                      alt="logo"
+                    />
                   </Col>
-                  <Col span={14}>
-                    <Typography.Title level={3}>
+                  <Col
+                    sm={{ span: 14 }}
+                    xs={{ span: 24 }}
+                    className={style.about__descr}
+                  >
+                    <Typography.Title level={4}>
                       More Fun and More Rewarding!
                     </Typography.Title>
-                    <Typography.Text className={style.about__descr}>
+                    <Typography.Text className={style.about__descr_text}>
                       We are FreeToGame, a new gaming platform that brings all
                       the best Free-to-Play Multiplayer Games and MMO Games into
                       one place while rewarding gamers with free premium loot

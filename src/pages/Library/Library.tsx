@@ -20,7 +20,7 @@ const Library: FC = () => {
 
   const handleClickRemove = (e: React.MouseEvent, game: IGames) => {
     e.preventDefault();
-    dispatch(removeGame({ email, game }));
+    email && dispatch(removeGame({ email, game }));
   };
 
   return (

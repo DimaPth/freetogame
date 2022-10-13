@@ -30,3 +30,15 @@
 .dark_text {
   color: #7a8288;
 }
+
+@media screen and (max-width: 450px) {
+  .moreGames {
+    .header {
+      flex-direction: column;
+      align-items: start;
+      .btn {
+        margin-bottom: 20px;
+      }
+    }
+  }
+}

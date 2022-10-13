@@ -53,14 +53,12 @@ const Game: FC = () => {
         {isSuccess && (
           <>
             <Row>
-              <Col span={8} className={style.sidebar}>
+              <Col md={{ span: 8 }} xs={{ span: 24 }} className={style.sidebar}>
                 <div className={style.sticky}>
                   <img
                     src={data?.thumbnail}
                     alt={data?.title}
                     className={style.image}
-                    width={365}
-                    height={206}
                   />
                   <div
                     className={style.buttons}
@@ -85,7 +83,11 @@ const Game: FC = () => {
                   </span>
                 </div>
               </Col>
-              <Col span={16} className={style.content}>
+              <Col
+                md={{ span: 16 }}
+                xs={{ span: 24 }}
+                className={style.content}
+              >
                 <Breadcrumb className={style.breadcrumb} separator={">"}>
                   <Breadcrumb.Item className={style.breadcrumbItem}>
                     <Link to="/">Home</Link>{" "}
@@ -133,31 +135,23 @@ const Game: FC = () => {
                       </Col>
                     ))}
                   </Row>
-                  {data.platform === "Windows" && (
-                    <>
-                      <Typography.Title level={4} className={style.info__title}>
-                        {data.title} Screenshots
-                      </Typography.Title>
-                      <Divider className={style.info__divider} />
-                      <Row>
-                        <Image.PreviewGroup>
-                          {data.screenshots.map((image) => (
-                            <Col
-                              lg={{ span: 8 }}
-                              xl={{ span: 6 }}
-                              key={image.id}
-                            >
-                              <Image
-                                className={style.info__screenshot}
-                                width={180}
-                                src={image.image}
-                              />
-                            </Col>
-                          ))}
-                        </Image.PreviewGroup>
-                      </Row>
-                    </>
-                  )}
+                  <Typography.Title level={4} className={style.info__title}>
+                    {data.title} Screenshots
+                  </Typography.Title>
+                  <Divider className={style.info__divider} />
+                  <Row gutter={16}>
+                    <Image.PreviewGroup>
+                      {data.screenshots.map((image) => (
+                        <Col
+                          lg={{ span: 8 }}
+                          key={image.id}
+                          className={style.info__screenshot}
+                        >
+                          <Image src={image.image} />
+                        </Col>
+                      ))}
+                    </Image.PreviewGroup>
+                  </Row>
                   <Typography.Title level={4} className={style.info__title}>
                     Minimum System Requirements{" "}
                     <Typography.Text className={cn(style.dark)}>

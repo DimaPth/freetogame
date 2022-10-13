@@ -17,15 +17,13 @@ const RandomGames: FC<RandomGamesProps> = ({ games, meta }) => {
   return (
     <div>
       {games?.length <= 3 ? (
-        <Row align="middle">
+        <Row align="middle" justify="space-between" className={style.games}>
           {games.map((game) => (
-            <div className={style.card} key={game.id}>
-              <GameCard meta={meta} game={game} />
-            </div>
+            <GameCard key={game.id} meta={meta} game={game} />
           ))}
         </Row>
       ) : (
-        <Row align="middle" justify="space-between">
+        <Row align="middle" justify="space-between" className={style.games}>
           <GameCard meta={meta} game={games[getRandomInt(games?.length - 1)]} />
           <GameCard meta={meta} game={games[getRandomInt(games?.length - 1)]} />
           <GameCard meta={meta} game={games[getRandomInt(games?.length - 1)]} />

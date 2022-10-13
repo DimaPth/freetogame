@@ -36,7 +36,7 @@ const Top: FC = () => {
       </Typography.Title>
       <div>
         <Row className={style.select}>
-          <Col span={12}>
+          <Col sm={{ span: 12 }} xs={{ span: 24 }}>
             <span className={style.dark_text}>More Top 10's: </span>
             <Select
               defaultValue="Select Category"
@@ -60,7 +60,7 @@ const Top: FC = () => {
               </OptGroup>
             </Select>
           </Col>
-          <Col span={12}>
+          <Col sm={{ span: 12 }} xs={{ span: 24 }}>
             <span className={style.dark_text}>Platform: </span>
             <Select
               defaultValue="All Platforms"
@@ -111,7 +111,7 @@ const Top: FC = () => {
               ? "PC"
               : "Browser"}
           </Typography.Title>
-          <Link to="/games" onClick={() => window.scrollTo(0, 0)}>
+          <Link to="/games/all" onClick={() => window.scrollTo(0, 0)}>
             <div className={style.btn}>
               Explore <RightOutlined />
             </div>

@@ -24,6 +24,11 @@ const Games: FC = () => {
     (isSuccess && data?.length > 0 && data?.slice(0, limit)) || [];
 
   useEffect(() => {
+    window.scrollTo(0, 0);
+    setLimit(12);
+  }, []);
+
+  useEffect(() => {
     params.platform ? setPlatform(params.platform) : setPlatform("all");
     params.genre ? setCategory(params.genre) : setCategory(undefined);
   }, [params]);
@@ -71,7 +76,7 @@ const Games: FC = () => {
       </div>
       <div>
         <Row className={style.select}>
-          <Col span={6}>
+          <Col span={6} sm={{ span: 8 }} xs={{ span: 24 }}>
             <span className={style.dark_text}>Platform: </span>
             <Select
               defaultValue="All Platforms"
@@ -94,7 +99,7 @@ const Games: FC = () => {
               </OptGroup>
             </Select>
           </Col>
-          <Col span={6}>
+          <Col span={6} sm={{ span: 8 }} xs={{ span: 24 }}>
             <span className={style.dark_text}>Genre/Tag: </span>
             <Select
               defaultValue="All Genres"
@@ -121,7 +126,7 @@ const Games: FC = () => {
               </OptGroup>
             </Select>
           </Col>
-          <Col span={6}>
+          <Col span={6} sm={{ span: 8 }} xs={{ span: 24 }}>
             <span className={style.dark_text}>Sort By: </span>
             <Select
               defaultValue="Relevance"
@@ -146,13 +151,7 @@ const Games: FC = () => {
           <Row justify="space-between">
             {isSuccess &&
               current?.map((game) => (
-                <GameCard
-                  game={game}
-                  key={game.id}
-                  small
-                  meta="full"
-                  // addGame={(e) => handleClickAdd(e, game)}
-                />
+                <GameCard game={game} key={game.id} small meta="full" />
               ))}
           </Row>
         </div>
