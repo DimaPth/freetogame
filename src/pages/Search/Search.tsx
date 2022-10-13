@@ -30,17 +30,29 @@ const Search: FC = () => {
   }, [debouncedSearchValue, data]);
 
   useEffect(() => {
+    window.scrollTo(0, 0);
+    setLimit(12);
+  }, []);
+
+  useEffect(() => {
     document.addEventListener("scroll", scrollHandler);
     return function () {
       document.removeEventListener("scroll", scrollHandler);
     };
   }, [limit, filtered]);
 
+  const recommendationHeight =
+    document.getElementById("recommendation")?.offsetHeight || 0;
+  const footerHeight = document.querySelector("footer")?.offsetHeight || 0;
+
   const scrollHandler = () => {
     if (
       document.documentElement.scrollHeight -
-        (document.documentElement.scrollTop + window.innerHeight) <
-        150 &&
+        (document.documentElement.scrollTop +
+          window.innerHeight +
+          footerHeight +
+          recommendationHeight) <
+        100 &&
       limit < filtered.length
     ) {
       setLimit((prev) => prev + 12);
@@ -66,7 +78,7 @@ const Search: FC = () => {
           <GameCard game={game} key={game.id} small meta="full" />
         ))}
       </Row>
-      <div className={style.recommendation}>
+      <div className={style.recommendation} id="recommendation">
         <Typography.Title level={5}>You May Like</Typography.Title>
         {isSuccess && (
           <RandomGames games={[data[7], data[12], data[24]]} meta="title" />

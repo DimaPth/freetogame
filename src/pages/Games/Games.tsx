@@ -40,10 +40,14 @@ const Games: FC = () => {
     };
   }, [limit, data]);
 
+  const footerHeight = document.querySelector("footer")?.offsetHeight || 0;
+
   const scrollHandler = () => {
     if (
       document.documentElement.scrollHeight -
-        (document.documentElement.scrollTop + window.innerHeight) <
+        (document.documentElement.scrollTop +
+          window.innerHeight +
+          footerHeight) <
         100 &&
       limit < (isSuccess && data?.length)
     ) {
