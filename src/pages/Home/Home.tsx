@@ -50,7 +50,7 @@ const Home: FC = () => {
                     <b>GET STARTED</b> <span>it's free</span>
                   </CustomBtn>
                 </Link>
-                <Link to="/games">
+                <Link to="/games/all">
                   <CustomBtn type="ghost">Browse Games</CustomBtn>
                 </Link>
               </Space>
@@ -77,7 +77,7 @@ const Home: FC = () => {
                     <HorizontalCard game={item} key={item.id} />
                   ))}
                   <div className={style.btn}>
-                    <Link to="/games" onClick={() => window.scrollTo(0, 0)}>
+                    <Link to="/games/all" onClick={() => window.scrollTo(0, 0)}>
                       <CustomBtn type="ghost">
                         More Games <RightOutlined />
                       </CustomBtn>
