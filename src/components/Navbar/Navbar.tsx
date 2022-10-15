@@ -5,7 +5,7 @@ import {
   MenuUnfoldOutlined,
   SearchOutlined,
 } from "@ant-design/icons";
-import { Col, Dropdown, Layout, Menu, Modal, Row, Space } from "antd";
+import { Col, Dropdown, Layout, Menu, Modal, Row, Space, Tooltip } from "antd";
 import type { MenuProps } from "antd";
 import React, { FC, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
@@ -180,14 +180,14 @@ const Navbar: FC = () => {
           <Row justify="end">
             <Space size="middle">
               <Link to={RouteNames.Search}>
-                <div>
+                <Tooltip title="search" placement="bottom">
                   <SearchOutlined />
-                </div>
+                </Tooltip>
               </Link>
               <Link to={isAuth ? RouteNames.Library : RouteNames.Login}>
-                <div>
+                <Tooltip title="library" placement="bottom">
                   <AppstoreFilled />
-                </div>
+                </Tooltip>
               </Link>
               {isAuth ? (
                 <Dropdown

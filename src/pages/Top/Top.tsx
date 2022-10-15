@@ -1,4 +1,4 @@
-import { Card, Col, Divider, Row, Select, Typography } from "antd";
+import { Col, Divider, Row, Select, Typography } from "antd";
 import React, { FC, useState } from "react";
 import { Link } from "react-router-dom";
 import style from "./Top.module.scss";
@@ -12,7 +12,7 @@ const { Option, OptGroup } = Select;
 const Top: FC = () => {
   const [platform, setPlatform] = useState<string>("all");
   const [category, setCategory] = useState<string>();
-  const [sortBy, setSortBy] = useState<string>();
+  const [sortBy] = useState<string>();
 
   const { data, isLoading, isError, isSuccess } =
     useGetMultipleSortedGamesQuery({
@@ -20,6 +20,20 @@ const Top: FC = () => {
       category: category?.toLowerCase(),
       "sort-by": sortBy,
     });
+
+  if (isError)
+    return (
+      <div className="container">
+        <h1>Something gone wrong</h1>
+      </div>
+    );
+
+  if (isLoading)
+    return (
+      <div className="container">
+        <h1>Loading...</h1>
+      </div>
+    );
 
   return (
     <div className="container">

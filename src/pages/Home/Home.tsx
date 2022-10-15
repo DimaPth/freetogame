@@ -1,6 +1,5 @@
 import { Col, Row, Space, Typography } from "antd";
 import React, { FC } from "react";
-import cn from "classnames";
 import { Link } from "react-router-dom";
 import style from "./Home.module.scss";
 import RandomGames from "../../components/RandomGames/RandomGames";
@@ -17,6 +16,21 @@ const Home: FC = () => {
     useGetSortedGamesQuery("release-date");
   const newGames = data && data.slice(0, 7);
   const mostPlayed = data && data.slice(8, 12);
+
+  if (isError)
+    return (
+      <div className="container">
+        <h1>Something gone wrong</h1>
+      </div>
+    );
+
+  if (isLoading)
+    return (
+      <div className="container">
+        <h1>Loading...</h1>
+      </div>
+    );
+
   return (
     <div>
       {!isAuth && (

@@ -5,8 +5,8 @@ import {
   PlaySquareOutlined,
   WindowsFilled,
 } from "@ant-design/icons";
-import { Card, Space, Typography } from "antd";
-import classNames from "classnames";
+import { Card, Typography } from "antd";
+import cn from "classnames";
 import React, { FC } from "react";
 import { Link } from "react-router-dom";
 import { IGames } from "../../types/IGames";
@@ -38,13 +38,13 @@ const HorizontalCard: FC<HorizontalCardProps> = ({
           padding: "0.5rem",
         }}
       >
-        <div className={classNames(style.card__body, style.card__body_library)}>
+        <div className={cn(style.card__body, style.card__body_library)}>
           <Link to={`/game/${game.id}`}>
             <div className={style.img_wrap}>
               <img src={game.thumbnail} alt={game.title} width={"160px"} />
             </div>
           </Link>
-          <div className={classNames(style.description, style.flex)}>
+          <div className={cn(style.description, style.flex)}>
             <Link to={`/game/${game.id}`}>
               <Card.Meta title={game.title} />
             </Link>
@@ -73,12 +73,12 @@ const HorizontalCard: FC<HorizontalCardProps> = ({
         bodyStyle={{ padding: "0.5rem" }}
       >
         <div
-          className={classNames(style.card__body, {
+          className={cn(style.card__body, {
             [style.card__body_top]: type === "top",
           })}
         >
           <div
-            className={classNames(style.img__wrap, {
+            className={cn(style.img__wrap, {
               [style.top__img]: type === "top",
             })}
           >
@@ -100,7 +100,7 @@ const HorizontalCard: FC<HorizontalCardProps> = ({
                     most-played Free To Play games in {new Date().getFullYear()}
                   </span>
                 ) : (
-                  <span className={classNames(style.badge, style.dark)}>
+                  <span className={cn(style.badge, style.dark)}>
                     {game.genre}
                   </span>
                 )}

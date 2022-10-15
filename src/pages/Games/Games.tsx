@@ -55,7 +55,12 @@ const Games: FC = () => {
     }
   };
 
-  if (isLoading) return <h1>Loading...</h1>;
+  if (isLoading)
+    return (
+      <div className="container">
+        <h1>Loading...</h1>
+      </div>
+    );
 
   return (
     <div className="container">

@@ -32,7 +32,7 @@ const Game: FC = () => {
     id && setGameId(id);
   }, [id]);
 
-  const { data, isSuccess } = useGetGameByIDQuery(gameId);
+  const { data, isLoading, isSuccess } = useGetGameByIDQuery(gameId);
 
   const handleClickAdd = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -65,6 +65,13 @@ const Game: FC = () => {
       : null;
 
   window.scrollTo(0, 0);
+
+  if (isLoading)
+    return (
+      <div className="container">
+        <h1>Loading...</h1>
+      </div>
+    );
 
   return (
     <div className={style.main}>

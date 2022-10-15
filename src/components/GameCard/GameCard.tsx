@@ -1,13 +1,13 @@
 import React, { FC, useState, useEffect } from "react";
 import style from "./GameCard.module.scss";
 import cn from "classnames";
-import { Card, Space } from "antd";
+import { Card, Space, Tooltip } from "antd";
 import { IGames } from "../../types/IGames";
 import {
-  AppstoreAddOutlined,
   AppstoreFilled,
   ChromeFilled,
   MinusSquareFilled,
+  PlusSquareFilled,
   WindowsFilled,
 } from "@ant-design/icons";
 import { Link } from "react-router-dom";
@@ -98,14 +98,18 @@ const GameCard: FC<GameCardProps> = ({ game, meta, small }) => {
                       className={style.addBtn}
                       onClick={(e) => handleClickRemove(e)}
                     >
-                      <MinusSquareFilled />
+                      <Tooltip title="remove from library" placement="bottom">
+                        <MinusSquareFilled />
+                      </Tooltip>
                     </div>
                   ) : (
                     <div
                       className={style.addBtn}
                       onClick={(e) => handleClickAdd(e)}
                     >
-                      <AppstoreAddOutlined />
+                      <Tooltip title="add to library" placement="bottom">
+                        <PlusSquareFilled />
+                      </Tooltip>
                     </div>
                   )}
                   <Space>

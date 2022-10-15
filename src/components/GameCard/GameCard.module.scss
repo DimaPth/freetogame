@@ -120,6 +120,13 @@
           width: 220px;
         }
       }
+      &__descr {
+        &_else {
+          .addBtn {
+            font-size: 20px;
+          }
+        }
+      }
     }
   }
 }
