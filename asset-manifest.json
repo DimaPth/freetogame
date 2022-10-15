@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/freetogame/static/css/main.b856e294.css",
+    "main.js": "/freetogame/static/js/main.099945d9.js",
+    "index.html": "/freetogame/index.html",
+    "main.b856e294.css.map": "/freetogame/static/css/main.b856e294.css.map",
+    "main.099945d9.js.map": "/freetogame/static/js/main.099945d9.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.b856e294.css",
+    "static/js/main.099945d9.js"
+  ]
+}
