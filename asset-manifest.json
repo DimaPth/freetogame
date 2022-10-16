@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/freetogame/static/css/main.b856e294.css",
+    "main.css": "/freetogame/static/css/main.a814c33d.css",
     "main.js": "/freetogame/static/js/main.b2ac8bbe.js",
     "index.html": "/freetogame/index.html",
-    "main.b856e294.css.map": "/freetogame/static/css/main.b856e294.css.map",
+    "main.a814c33d.css.map": "/freetogame/static/css/main.a814c33d.css.map",
     "main.b2ac8bbe.js.map": "/freetogame/static/js/main.b2ac8bbe.js.map"
   },
   "entrypoints": [
-    "static/css/main.b856e294.css",
+    "static/css/main.a814c33d.css",
     "static/js/main.b2ac8bbe.js"
   ]
 }
